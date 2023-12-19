@@ -41,6 +41,7 @@ public class Principal {
         for (int i = 0; i < tablero.length; i++) {
             System.out.println(Arrays.toString(tablero[i]));
         }
+        /*while movimiento != 9*/
         //Movimento 1
         System.out.println("");
         if (posF - 1 >= 0 && posC + 2 <= 7) {
