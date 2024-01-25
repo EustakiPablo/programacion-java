@@ -6,13 +6,13 @@ public class Personal {
     private String nombre;
     private ArrayList<Maquinista> maquinistas;
     private ArrayList<Mecanico> mecanicos;
-    private ArrayList<JefeProyecto> jefesProyecto;
+    private ArrayList<JefeEstacion> jefesProyecto;
 
     public Personal(String nombre) {
         this.nombre = nombre;
         maquinistas = new ArrayList<Maquinista>();
         mecanicos = new ArrayList<Mecanico>();
-        jefesProyecto = new ArrayList<JefeProyecto>();
+        jefesProyecto = new ArrayList<JefeEstacion>();
     }
 
     public String getNombre() {
@@ -31,11 +31,11 @@ public class Personal {
         return mecanicos;
     }
 
-    public ArrayList<JefeProyecto> getJefesProyecto() {
+    public ArrayList<JefeEstacion> getJefesProyecto() {
         return jefesProyecto;
     }
 
-    public void addJefe(JefeProyecto jefeProyecto) {
+    public void addJefe(JefeEstacion jefeProyecto) {
         jefesProyecto.add(jefeProyecto);
     }
 
@@ -55,7 +55,7 @@ public class Personal {
         System.out.println();
     }
     public void verJefesProyecto(){
-        for (JefeProyecto j : jefesProyecto){
+        for (JefeEstacion j : jefesProyecto){
             System.out.println("----Jefes de proyecto----");
             System.out.print(j.getNombre()+" "+j.getDni()+", "+"\n");
             System.out.println("------------------");

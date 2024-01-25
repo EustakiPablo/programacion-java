@@ -47,4 +47,7 @@ public class Maquinista {
     public void setRango(String rango) {
         this.rango = rango;
     }
+    public void visualizar(){
+        System.out.println(nombre+" "+dni);
+    }
 }

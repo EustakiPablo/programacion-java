@@ -13,15 +13,18 @@ public class Tren {
         this.vagones = new ArrayList<Vagon>();
     }
 
-    public boolean add(Vagon vagon) {
-        return vagones.add(vagon);
+    public void addVagon(Vagon vagon) {
+        vagones.add(vagon);
     }
     public void verTren(){
-        System.out.println("Maquinista: "+maquinista);
-        System.out.println("Locomotora: "+locomotora);
-        System.out.println("Carga de los vagones: ");
+        System.out.println("Maquinista: ");
+        maquinista.visualizar();
+        System.out.println("Locomotora: ");
+        locomotora.visualizar();
+        System.out.println("Mercancia en los vagones: ");
         for (Vagon v : vagones){
-            System.out.println(v.getCargaActual()+", ");
+            System.out.print(v.getMercancia()+", ");
         }
+        System.out.println();
     }
 }

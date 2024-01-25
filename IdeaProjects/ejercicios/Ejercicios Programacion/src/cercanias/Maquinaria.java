@@ -18,4 +18,10 @@ public class Maquinaria {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+    public void addTren(Tren tren){
+        trenes.add(tren);
+    }
+    public int cantidadTrenes(){
+        return trenes.size();
+    }
 }

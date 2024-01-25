@@ -47,4 +47,8 @@ public class Mecanico {
     public void setEspecialidad(String especialidad) {
         this.especialidad = especialidad;
     }
+    public void visualizar(){
+        System.out.println(nombre);
+        System.out.println(dni);
+    }
 }
