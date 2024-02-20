@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class Principal {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         Scanner teclado = new Scanner(System.in);
-        FileOutputStream escribir = new FileOutputStream("cliente.dat");
+        FileOutputStream escribir = new FileOutputStream("cliente.dat",true);
         ObjectOutputStream escritura = new ObjectOutputStream(escribir);
         ArrayList<Cliente> clientesEscritura;
         FileInputStream leer = new FileInputStream("cliente.dat");

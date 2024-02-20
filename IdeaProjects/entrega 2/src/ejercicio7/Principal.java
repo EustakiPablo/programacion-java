@@ -32,35 +32,71 @@ public class Principal {
                 if (dia>=1&&dia<=21){
                     System.out.println("Piscis");
                 } else if (dia<=31) {
-                    System.out.println("A");
+                    System.out.println("Aries");
                 }
                 break;
             case 4:
-
+                if (dia>=1 && dia <=19){
+                    System.out.println("Aries");
+                }else if(dia<=30){
+                    System.out.println("Tauro");
+                }
                 break;
             case 5:
-
+                if (dia>=1 && dia <= 21){
+                    System.out.println("Tauro");
+                } else if (dia <= 31) {
+                    System.out.println("Géminis");
+                }
                 break;
             case 6:
-
+                if (dia >=1 && dia >=21){
+                    System.out.println("Géminis");
+                } else if (dia <=30) {
+                    System.out.println("Cáncer");
+                }
                 break;
-            case 7:
-
+            case 7://31
+                if (dia >=1 && dia <= 22){
+                    System.out.println("Cáncer");
+                } else if (dia <31) {
+                    System.out.println("Leo");
+                }
                 break;
             case 8:
-
+                if (dia >=1 && dia <=22){
+                    System.out.println("Leo");
+                } else if (dia < 31) {
+                    System.out.println("Virgo");
+                }
                 break;
             case 9:
-
+                if (dia >=1 && dia <= 22){
+                    System.out.println("Virgo");
+                } else if (dia <=30) {
+                    System.out.println("Libra");
+                }
                 break;
             case 10:
-
+                if (dia >=1 && dia<=23){
+                    System.out.println("Libra");
+                } else if (dia<=31) {
+                    System.out.println("Escorpio");
+                }
                 break;
             case 11:
-
+                if (dia>= 1 && dia<=21){
+                    System.out.println("Escorpio");
+                } else if (dia<=30) {
+                    System.out.println("Sagitario");
+                }
                 break;
             case 12:
-
+                if (dia>=1 && dia <=21){
+                    System.out.println("Sagitario");
+                } else if (dia<=31) {
+                    System.out.println("Capricornio");
+                }
                 break;
             default:
                 System.out.println("No es un mes válido");

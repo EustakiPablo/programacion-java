@@ -23,7 +23,7 @@ public class Cliente implements Serializable {
     }
 
     public void setId(int id) {
-        Cliente.id = id;
+        this.id = id;
     }
 
     public String getNombre() {
