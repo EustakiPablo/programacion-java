@@ -1,15 +1,6 @@
 package interfacesBien;
 
-public class Batidora implements PiezaGirable{
-    private String vaso;
-
-    public String getVaso() {
-        return vaso;
-    }
-
-    public void setVaso(String vaso) {
-        this.vaso = vaso;
-    }
+public class Batidora extends Brazo{
 
     @Override
     public void girar() {

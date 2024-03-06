@@ -1,6 +1,6 @@
 package interfacesBien;
 
-public class Varilla implements PiezaGirable{
+public class Varilla extends Brazo{
 
     @Override
     public void girar() {
