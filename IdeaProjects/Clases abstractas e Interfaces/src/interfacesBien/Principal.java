@@ -1,5 +1,7 @@
 package interfacesBien;
 
+
+
 public class Principal {
     public static void main(String[] args) {
         Batidora b1 = new Batidora();
