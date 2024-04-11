@@ -1,0 +1,136 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- -----------------------------------------------------
+-- Schema clinica_veterinaria
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema clinica_veterinaria
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `clinica_veterinaria` DEFAULT CHARACTER SET utf8 ;
+USE `clinica_veterinaria` ;
+
+-- -----------------------------------------------------
+-- Table `clinica_veterinaria`.`especialidades`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `clinica_veterinaria`.`especialidades` (
+  `idespecialidades` INT NOT NULL,
+  `Especialidad` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idespecialidades`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `clinica_veterinaria`.`medicos`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `clinica_veterinaria`.`medicos` (
+  `idmedicos` INT NOT NULL,
+  `Nombre` VARCHAR(45) NOT NULL,
+  `Apellido` VARCHAR(45) NOT NULL,
+  `Telefono` INT NULL,
+  `Direccion` VARCHAR(45) NULL,
+  `especialidades_idespecialidades` INT NOT NULL,
+  PRIMARY KEY (`idmedicos`, `especialidades_idespecialidades`),
+  INDEX `fk_medicos_especialidades_idx` (`especialidades_idespecialidades` ASC) VISIBLE,
+  CONSTRAINT `fk_medicos_especialidades`
+    FOREIGN KEY (`especialidades_idespecialidades`)
+    REFERENCES `clinica_veterinaria`.`especialidades` (`idespecialidades`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `clinica_veterinaria`.`pacientes`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `clinica_veterinaria`.`pacientes` (
+  `idpacientes` INT NOT NULL,
+  `Nombre` VARCHAR(45) NOT NULL,
+  `Direccion` VARCHAR(45) NULL,
+  `fecha_nacimiento` DATETIME NOT NULL,
+  PRIMARY KEY (`idpacientes`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `clinica_veterinaria`.`registros`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `clinica_veterinaria`.`registros` (
+  `idregistros` INT NOT NULL,
+  `Fecha_ingreso` DATETIME NOT NULL,
+  `Fecha_salida` DATETIME NOT NULL,
+  `pacientes_idpacientes` INT NOT NULL,
+  PRIMARY KEY (`idregistros`, `pacientes_idpacientes`),
+  INDEX `fk_registros_pacientes1_idx` (`pacientes_idpacientes` ASC) VISIBLE,
+  CONSTRAINT `fk_registros_pacientes1`
+    FOREIGN KEY (`pacientes_idpacientes`)
+    REFERENCES `clinica_veterinaria`.`pacientes` (`idpacientes`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `clinica_veterinaria`.`especies`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `clinica_veterinaria`.`especies` (
+  `idespecies` INT NOT NULL,
+  `nombre` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idespecies`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `clinica_veterinaria`.`razas`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `clinica_veterinaria`.`razas` (
+  `idrazas` INT NOT NULL,
+  `nombre` VARCHAR(45) NOT NULL,
+  `especies_idespecies` INT NOT NULL,
+  `pacientes_idpacientes` INT NOT NULL,
+  PRIMARY KEY (`idrazas`, `especies_idespecies`, `pacientes_idpacientes`),
+  INDEX `fk_razas_especies1_idx` (`especies_idespecies` ASC) VISIBLE,
+  INDEX `fk_razas_pacientes1_idx` (`pacientes_idpacientes` ASC) VISIBLE,
+  CONSTRAINT `fk_razas_especies1`
+    FOREIGN KEY (`especies_idespecies`)
+    REFERENCES `clinica_veterinaria`.`especies` (`idespecies`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_razas_pacientes1`
+    FOREIGN KEY (`pacientes_idpacientes`)
+    REFERENCES `clinica_veterinaria`.`pacientes` (`idpacientes`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `clinica_veterinaria`.`medicos_has_pacientes`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `clinica_veterinaria`.`medicos_has_pacientes` (
+  `medicos_idmedicos` INT NOT NULL,
+  `medicos_especialidades_idespecialidades` INT NOT NULL,
+  `pacientes_idpacientes` INT NOT NULL,
+  PRIMARY KEY (`medicos_idmedicos`, `medicos_especialidades_idespecialidades`, `pacientes_idpacientes`),
+  INDEX `fk_medicos_has_pacientes_pacientes1_idx` (`pacientes_idpacientes` ASC) VISIBLE,
+  INDEX `fk_medicos_has_pacientes_medicos1_idx` (`medicos_idmedicos` ASC, `medicos_especialidades_idespecialidades` ASC) VISIBLE,
+  CONSTRAINT `fk_medicos_has_pacientes_medicos1`
+    FOREIGN KEY (`medicos_idmedicos` , `medicos_especialidades_idespecialidades`)
+    REFERENCES `clinica_veterinaria`.`medicos` (`idmedicos` , `especialidades_idespecialidades`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_medicos_has_pacientes_pacientes1`
+    FOREIGN KEY (`pacientes_idpacientes`)
+    REFERENCES `clinica_veterinaria`.`pacientes` (`idpacientes`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

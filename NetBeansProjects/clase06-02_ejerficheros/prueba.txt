@@ -1,0 +1,3 @@
+Nombre: alex
+Fecha de nacimiento: vega
+Dirección: tupu
