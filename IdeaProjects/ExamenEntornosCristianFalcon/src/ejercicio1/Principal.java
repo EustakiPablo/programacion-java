@@ -28,6 +28,7 @@ public class Principal {
                 }
             }
         }
+        //ESTO ES UN CAMBIO
         System.out.println("Has introducido: "+contador);
         System.out.println("La media de los impares es:"+(finN/contadorN));
         System.out.println("El mayor número par introducido es: "+mayorP);
