@@ -1,7 +1,15 @@
-DROP DATABASE IF EXISTS empresacondicional;
-CREATE DATABASE empresacondicional;
-USE empresacondicional;
- drop table if exists clientes;
+/*
+	Mostramos la provincia con más clientes a partir de 2 nombres de provincias dados
+	Si las 2 tienen el mismo número de clientes aparecen las 2
+*/
+
+#Creación de la base de datos
+DROP DATABASE IF EXISTS empresaentradasalida;
+CREATE DATABASE empresaentradasalida;
+USE empresaentradasalida;
+
+#Creación de las tablas
+drop table if exists clientes;
  drop table if exists provincias;
 
  create table clientes (
@@ -19,9 +27,9 @@ USE empresacondicional;
   nombre varchar(20),
   primary key (codigo)
  );
-
-
- insert into provincias (nombre) values('Cordoba');
+ 
+ #Inserción de datos
+insert into provincias (nombre) values('Cordoba');
  insert into provincias (nombre) values('Santa Fe');
  insert into provincias (nombre) values('Corrientes');
  insert into provincias (nombre) values('Misiones');
@@ -51,22 +59,40 @@ USE empresacondicional;
   values ('Lopez Lucas', 'San Martin 1010', 'Posadas',4,'0457858745');
 
 
-DROP PROCEDURE IF EXISTS mayor_provincia;
 
+
+
+
+
+
+
+
+
+
+
+#Procedimiento
+DROP PROCEDURE IF EXISTS provinciaMasClient;
 DELIMITER //
-CREATE PROCEDURE mayor_provincia(IN prov1 VARCHAR(20),IN prov2 VARCHAR(20))
+CREATE PROCEDURE provinciaMasClient(IN prov1 CHAR(20), IN prov2 CHAR(20))#las entradas de datos son las provincias
 BEGIN
-	DECLARE num1 varchar(30);
-    DECLARE num2 varchar(30);
-    SELECT num1 = COUNT(codigoprovincia) FROM clientes WHERE codigoprovincia=(SELECT codigo FROM provincias WHERE nombre = prov1);
-    SELECT num2 = COUNT(codigoprovincia) FROM clientes WHERE codigoprovincia=(SELECT codigo FROM provincias WHERE nombre = prov2);
+	#Declaración de variables y asignación de valores
+	DECLARE prueba INT DEFAULT 0;
+    DECLARE prueba2 INT DEFAULT 0;
+	SELECT COUNT(codigo) INTO prueba FROM clientes WHERE codigoprovincia=(SELECT codigo FROM provincias WHERE nombre=prov1);
+    SELECT COUNT(codigo) INTO prueba2 FROM clientes WHERE codigoprovincia=(SELECT codigo FROM provincias WHERE nombre=prov2);
+    #Casteo a DOUBLE para comparación matemática
+	SET prueba = CAST(prueba AS DOUBLE);
+    SET prueba2 = CAST(prueba2 AS DOUBLE);
+    #Condicional para ver que se imprime
+    IF prueba > prueba2 THEN
+		SELECT provincias.nombre,COUNT(clientes.codigo) FROM provincias,clientes WHERE clientes.codigoprovincia = provincias.codigo && provincias.nombre = prov1 GROUP BY provincias.nombre;
+	ELSEIF prueba < prueba2 THEN
+		SELECT provincias.nombre,COUNT(clientes.codigo) FROM provincias,clientes WHERE clientes.codigoprovincia = provincias.codigo && provincias.nombre = prov2 GROUP BY provincias.nombre;
+	ELSE 
+		SELECT provincias.nombre,COUNT(clientes.codigo) FROM provincias,clientes WHERE clientes.codigoprovincia = provincias.codigo && provincias.nombre = prov1 || provincias.nombre = prov2 GROUP BY provincias.nombre;
+    END IF;
     
-    IF num1>num2 THEN
-		SELECT nombre FROM provincias WHERE nombre = prov1;
-	ELSE
-		SELECT nombre FROM provincias WHERE nombre = prov2;
-	END IF;
 END //
 DELIMITER ;
 
-CALL mayor_provincia("Santa Fe","Cordoba");
+CALL provinciaMasClient('Santa Fe','Cordoba');

@@ -1,3 +1,6 @@
+persistencia\Borrado.class
 persistencia\Principal.class
+persistencia\Actualizacion.class
+persistencia\Insercion.class
 persistencia\Libros.class
 persistencia\Libros_.class

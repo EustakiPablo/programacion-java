@@ -4,20 +4,26 @@
  */
 package persistencia;
 
+import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.EntityManager;
 
 /**
  *
  * @author FP
  */
-public class Principal {
-
+public class Borrado {
     public static void main(String[] args) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("biblioteca");
         EntityManager em = emf.createEntityManager();
-        Libros l = em.find(Libros.class, "12-34");
-        System.out.println("mensaje "+l.toString());
+        Libros l3 = em.find(Libros.class, "111-222");
+        System.out.println(l3.toString());
+        
+        em.getTransaction().begin();
+        em.remove(l3);
+        em.getTransaction().commit();
+        
+        em.close();
+        emf.close();
     }
 }

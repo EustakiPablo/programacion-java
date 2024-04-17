@@ -1,3 +1,4 @@
+/**/
 DROP DATABASE IF EXISTS empresaEmpleados;
 CREATE DATABASE IF NOT EXISTS empresaEmpleados;
 USE empresaEmpleados;
@@ -20,12 +21,17 @@ INSERT INTO empleados VALUES ('1928367',"nombre3","apellido3",2500.0,4,"Direccio
 DROP PROCEDURE IF EXISTS pa_seccion;
 
 DELIMITER //
-CREATE PROCEDURE pa_seccion(IN sec VARCHAR(20))
+CREATE PROCEDURE pa_seccion(IN sec VARCHAR(20),OUT salidaAVG VARCHAR(10),OUT salidaMAX VARCHAR(10))
 BEGIN
-	SELECT AVG(sueldo),MAX(sueldo)
+	DECLARE sueldoAVG VARCHAR(10) DEFAULT '';
+    DECLARE sueldoMax VARCHAR(10) DEFAULT '';
+	SELECT AVG(sueldo),MAX(sueldo) INTO sueldoAVG,sueldoMax
     FROM empleados
     WHERE seccion = sec;
+    SELECT sueldoAVG INTO salidaAVG;
+    SELECT sueldoMax INTO salidaMAX;
 END //
 DELIMITER ;
 
-CALL pa_seccion("ingeniero");
+CALL pa_seccion("ingeniero",@promedio,@maximo);
+SELECT promedio,maximo;

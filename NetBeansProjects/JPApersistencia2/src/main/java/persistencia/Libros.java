@@ -53,6 +53,15 @@ public class Libros implements Serializable {
     public Libros() {
     }
 
+    public Libros(String isbn, String titulo, String autor, String editorial, Double precio, Date fecha) {
+        this.isbn = isbn;
+        this.titulo = titulo;
+        this.autor = autor;
+        this.editorial = editorial;
+        this.precio = precio;
+        this.fecha = fecha;
+    }
+
     public Libros(String isbn) {
         this.isbn = isbn;
     }
