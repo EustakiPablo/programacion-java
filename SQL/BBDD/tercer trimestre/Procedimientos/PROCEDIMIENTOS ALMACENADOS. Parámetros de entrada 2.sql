@@ -35,3 +35,18 @@ DELIMITER ;
 
 CALL pa_seccion("ingeniero",@promedio,@maximo);
 SELECT promedio,maximo;
+
+/*Prueba muy pocha para comprobar prioridad en variables globales y locales*/
+DROP PROCEDURE IF EXISTS prueba_pocha;
+DELIMITER //
+CREATE PROCEDURE prueba_pocha(INOUT conta INT)
+BEGIN
+	SET conta = 1+conta;
+    SELECT conta;
+    SET @conta = conta+2;
+    SELECT @conta;
+END //
+DELIMITER ;
+SET @conta = 1;
+CALL prueba_pocha(@conta);
+SELECT @conta;
