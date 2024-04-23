@@ -94,4 +94,4 @@ BEGIN
 END //
 DELIMITER ;
 
-CALL calc_dni(49154478);
+CALL calc_dni_tabla(49154478);
