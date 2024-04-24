@@ -108,15 +108,20 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
               <Component id="jLOperacion" min="-2" pref="134" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="jLSigno" min="-2" pref="62" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-              <Component id="jLOperacion" min="-2" pref="21" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jLOperacion" min="-2" pref="21" max="-2" attributes="0"/>
+                  <Component id="jLSigno" min="-2" pref="25" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jTResultado" min="-2" pref="54" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -157,11 +162,13 @@
                   <Component id="jB1" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jB0" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
-                  <Component id="jBResultado" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
-                  <Component id="jBInvertir" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jBFloat" alignment="0" pref="46" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jB0" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
+                      <Component id="jBResultado" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
+                      <Component id="jBInvertir" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -170,6 +177,9 @@
   </Layout>
   <SubComponents>
     <Component class="javax.swing.JLabel" name="jLOperacion">
+      <Properties>
+        <Property name="horizontalAlignment" type="int" value="0"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jBCE">
       <Properties>
@@ -236,6 +246,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="x2"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBCuadradoActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jBRaiz">
       <Properties>
@@ -386,6 +399,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="="/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBResultadoActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jTResultado">
       <Properties>
@@ -396,6 +412,8 @@
         <Property name="horizontalAlignment" type="int" value="4"/>
         <Property name="text" type="java.lang.String" value="0"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLSigno">
     </Component>
   </SubComponents>
 </Form>

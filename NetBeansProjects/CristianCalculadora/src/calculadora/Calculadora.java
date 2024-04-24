@@ -54,6 +54,7 @@ public class Calculadora extends javax.swing.JFrame {
         jBFloat = new javax.swing.JButton();
         jBResultado = new javax.swing.JButton();
         jTResultado = new javax.swing.JTextField();
+        jLSigno = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Calculadora");
@@ -61,6 +62,8 @@ public class Calculadora extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(333, 458));
         setResizable(false);
         setSize(new java.awt.Dimension(333, 458));
+
+        jLOperacion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         jBCE.setBackground(new java.awt.Color(204, 204, 204));
         jBCE.setText("CE");
@@ -105,6 +108,11 @@ public class Calculadora extends javax.swing.JFrame {
 
         jBCuadrado.setBackground(new java.awt.Color(204, 204, 204));
         jBCuadrado.setText("x2");
+        jBCuadrado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBCuadradoActionPerformed(evt);
+            }
+        });
 
         jBRaiz.setBackground(new java.awt.Color(204, 204, 204));
         jBRaiz.setText("raiz");
@@ -209,6 +217,11 @@ public class Calculadora extends javax.swing.JFrame {
         jBResultado.setBackground(new java.awt.Color(41, 99, 218));
         jBResultado.setForeground(new java.awt.Color(255, 255, 255));
         jBResultado.setText("=");
+        jBResultado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBResultadoActionPerformed(evt);
+            }
+        });
 
         jTResultado.setEditable(false);
         jTResultado.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -276,13 +289,17 @@ public class Calculadora extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLOperacion, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLSigno, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(jLOperacion, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLOperacion, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLSigno, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jTResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -317,11 +334,12 @@ public class Calculadora extends javax.swing.JFrame {
                     .addComponent(jBSumar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jB1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jB0, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBInvertir, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBFloat, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jBFloat, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jB0, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jBResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jBInvertir, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -339,6 +357,8 @@ public class Calculadora extends javax.swing.JFrame {
     private void jBCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCActionPerformed
         resultado = "";
         jTResultado.setText("0");
+        memoria = "";
+        jLSigno.setText("");
     }//GEN-LAST:event_jBCActionPerformed
 
     private void jBRetrocesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRetrocesoActionPerformed
@@ -351,13 +371,21 @@ public class Calculadora extends javax.swing.JFrame {
 
     private void jBInvertirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBInvertirActionPerformed
         //menos
-        if (resultado.charAt(0) == '-') {
+        if ((resultado != "")) {
+            if (resultado.charAt(0) == '-') {
+                resultado = resultado.substring(1, resultado.length());
+            }else{
+                resultado = "-"+resultado;
+            }
+        }
+        jTResultado.setText(resultado);
+        /*if (resultado.charAt(0) == '-') {
             resultado = resultado.substring(1, resultado.length()-1);
         } else if (resultado.isBlank()) {
             resultado = resultado;
         }else{
             resultado = "-"+resultado;
-        }
+        }*/
     }//GEN-LAST:event_jBInvertirActionPerformed
 
     private void jB1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB1ActionPerformed
@@ -414,11 +442,43 @@ public class Calculadora extends javax.swing.JFrame {
     }//GEN-LAST:event_jB9ActionPerformed
 
     private void jBSumarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSumarActionPerformed
-        memoria = resultado;
-        jLOperacion.setText(memoria + "+");
-        resultado = "";
-        jTResultado.setText("0");
+        
+        if (!(jTResultado.getText().charAt(0)=='0' && jTResultado.getText().length()==1)){
+            memoria = resultado;
+            jLOperacion.setText(memoria);
+            resultado = "";
+            jTResultado.setText("0");
+        }
+        jLSigno.setText("+");
+        
+        
     }//GEN-LAST:event_jBSumarActionPerformed
+
+    private void jBCuadradoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCuadradoActionPerformed
+        numero = Double.parseDouble(resultado);
+        Double cuadrado = Math.pow(numero, 2);
+        
+        resultado = cuadrado.toString();
+        jTResultado.setText(resultado);
+    }//GEN-LAST:event_jBCuadradoActionPerformed
+
+    private void jBResultadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBResultadoActionPerformed
+        switch(jLSigno.getText()){
+            case "+":
+                Double calculo = Double.parseDouble(memoria)+Double.parseDouble(resultado);
+                resultado = calculo.toString();
+                jTResultado.setText(resultado);
+                jLSigno.setText("");
+                jLOperacion.setText("");
+                break;
+            case "-":
+                
+                break;
+        }
+        memoria="";
+        
+        
+    }//GEN-LAST:event_jBResultadoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -454,6 +514,7 @@ public class Calculadora extends javax.swing.JFrame {
             }
         });
     }
+    private double numero;
     private String resultado = "";
     private String memoria;
     private int punto = 0;
@@ -483,6 +544,7 @@ public class Calculadora extends javax.swing.JFrame {
     private javax.swing.JButton jBRetroceso;
     private javax.swing.JButton jBSumar;
     private javax.swing.JLabel jLOperacion;
+    private javax.swing.JLabel jLSigno;
     private javax.swing.JTextField jTResultado;
     // End of variables declaration//GEN-END:variables
 }
