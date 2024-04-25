@@ -6,7 +6,9 @@ CREATE PROCEDURE minComMult(INOUT den1 INT, INOUT den2 INT)
 BEGIN
 	DECLARE dividir INT DEFAULT 2;
     DECLARE dividir2 INT DEFAULT 2;
-    
+    DECLARE final INT DEFAULT 1;
+    DECLARE ultimoBucle INT DEFAULT 1;
+    DECLARE contador INT DEFAULT 0;
     DECLARE division INT;
 	DECLARE division2 INT;
     SET division = den1;
@@ -31,11 +33,14 @@ BEGIN
 		SET dividir = dividir+1;
         SET dividir2 = dividir2+1;
     END WHILE;
-      
-
-
-    
-    
+    SELECT * FROM multiplos;
+      SET ultimoBucle = (SELECT COUNT(numeros) FROM multiplos);
+	WHILE (ultimoBucle != (SELECT COUNT(numeros) FROM multiplos)) DO
+		SET final = (final)*(SELECT numeros FROM multiplos LIMIT 1);
+        SET ultimoBucle = ultimoBucle+1;
+	END WHILE;
+    SELECT final;
+    -- contador
     -- SELECT * FROM multiplos;
 END//
 DELIMITER ;
