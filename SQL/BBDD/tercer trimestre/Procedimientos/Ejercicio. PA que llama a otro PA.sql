@@ -35,9 +35,10 @@ BEGIN
     END WHILE;
     SELECT * FROM multiplos;
       SET ultimoBucle = (SELECT COUNT(numeros) FROM multiplos);
-	WHILE (ultimoBucle != (SELECT COUNT(numeros) FROM multiplos)) DO
+	WHILE (ultimoBucle > contador) DO
 		SET final = (final)*(SELECT numeros FROM multiplos LIMIT 1);
-        SET ultimoBucle = ultimoBucle+1;
+        DELETE FROM multiplos WHERE numeros = (SELECT numeros FROM multiplos LIMIT 1);
+        SET contador = contador+1;
 	END WHILE;
     SELECT final;
     -- contador
