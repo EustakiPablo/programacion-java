@@ -52,7 +52,7 @@ BEGIN
 
     SET division = den1;
     SET division2 = den2;
-	SELECT den1,den2 AS "Test";
+	-- SELECT den1,den2 AS "Test";
     DROP TABLE IF EXISTS multiplos;
     CREATE TEMPORARY TABLE multiplos (numeros INT);
 
