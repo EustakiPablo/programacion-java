@@ -625,14 +625,15 @@ public class Calculadora extends javax.swing.JFrame {
         }
 
         String cadenaResultado = "";
+        String cadenaResultadoInvertida = "";
         if (noDecimal.length() > 3) {
             int acumulador = 0;
             for (int i = 0; i < noDecimal.length(); i++) {
                 if (acumulador == 2) {
-                    cadenaResultado += noDecimal.charAt(i) + ".";
+                    cadenaResultado += noDecimal.charAt(noDecimal.length()-1-i) + ".";
                     acumulador = 0;
                 } else {
-                    cadenaResultado += noDecimal.charAt(i);
+                    cadenaResultado += noDecimal.charAt(noDecimal.length()-1-i);
                     acumulador++;
                 }
 
@@ -644,27 +645,27 @@ public class Calculadora extends javax.swing.JFrame {
 
         }
         // FALTA INVERTIR LA CADENA Y CONCATENARLA CON LOS DECIMALES PARA MOSTRARLA Y LO TIENES CLEAN
-        /*for (int i = noDecimal.length(); i >= 0; i++) {
-            if (acumulador == 3) {
-                cadenaResultado += "." + noDecimal.charAt(i);
-                acumulador = 0;
-            } else {
-                cadenaResultado += noDecimal.charAt(i);
-            }
+        for (int i = 0; i < cadenaResultado.length(); i++) {
+            cadenaResultadoInvertida+=cadenaResultado.charAt(noDecimal.length()-i);
         }
         
-        if (acumulador >= 3) {
-                    cadenaResultado+=noDecimal.charAt(noDecimal.length()-1-i)+".";
-                    acumulador = 0;
-                }else{
-                    cadenaResultado+=noDecimal.charAt(noDecimal.length()-1-i);
-                }
-                acumulador++;
         
-         */
+        
+        
         //jTResultado.setText(resultado);
-        jTResultado.setText(resultado);
-        System.out.println(cadenaResultado);
+        if (cadenaResultadoInvertida.length()==0) {
+            jTResultado.setText(resultado);
+        }else{
+            if (resultado.contains(".")) {
+            jTResultado.setText(cadenaResultadoInvertida+resultado.substring(resultado.indexOf("."), resultado.length()-1));
+        }else{
+            jTResultado.setText(cadenaResultadoInvertida);
+        }
+        }
+        
+        //jTResultado.setText(cadenaResultadoInvertida);
+        //System.out.println(cadenaResultado);
+        //System.out.println(cadenaResultadoInvertida);
     }
 
     public static void main(String args[]) {
