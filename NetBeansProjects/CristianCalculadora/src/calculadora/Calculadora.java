@@ -116,9 +116,19 @@ public class Calculadora extends javax.swing.JFrame {
 
         jBRaiz.setBackground(new java.awt.Color(204, 204, 204));
         jBRaiz.setText("raiz");
+        jBRaiz.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBRaizActionPerformed(evt);
+            }
+        });
 
         jBDividir.setBackground(new java.awt.Color(204, 204, 204));
         jBDividir.setText("/");
+        jBDividir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBDividirActionPerformed(evt);
+            }
+        });
 
         jB7.setText("7");
         jB7.addActionListener(new java.awt.event.ActionListener() {
@@ -143,6 +153,11 @@ public class Calculadora extends javax.swing.JFrame {
 
         jBMultiplicar.setBackground(new java.awt.Color(204, 204, 204));
         jBMultiplicar.setText("x");
+        jBMultiplicar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBMultiplicarActionPerformed(evt);
+            }
+        });
 
         jB4.setText("4");
         jB4.addActionListener(new java.awt.event.ActionListener() {
@@ -167,6 +182,11 @@ public class Calculadora extends javax.swing.JFrame {
 
         jBRestar.setBackground(new java.awt.Color(204, 204, 204));
         jBRestar.setText("-");
+        jBRestar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBRestarActionPerformed(evt);
+            }
+        });
 
         jB1.setText("1");
         jB1.addActionListener(new java.awt.event.ActionListener() {
@@ -374,11 +394,12 @@ public class Calculadora extends javax.swing.JFrame {
         if ((resultado != "")) {
             if (resultado.charAt(0) == '-') {
                 resultado = resultado.substring(1, resultado.length());
+                jTResultado.setText(resultado);
             }else{
                 resultado = "-"+resultado;
+                jTResultado.setText(resultado);
             }
         }
-        jTResultado.setText(resultado);
         /*if (resultado.charAt(0) == '-') {
             resultado = resultado.substring(1, resultado.length()-1);
         } else if (resultado.isBlank()) {
@@ -463,22 +484,79 @@ public class Calculadora extends javax.swing.JFrame {
     }//GEN-LAST:event_jBCuadradoActionPerformed
 
     private void jBResultadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBResultadoActionPerformed
+        Double calculo;
         switch(jLSigno.getText()){
             case "+":
-                Double calculo = Double.parseDouble(memoria)+Double.parseDouble(resultado);
+                calculo = Double.parseDouble(memoria)+Double.parseDouble(resultado);
                 resultado = calculo.toString();
                 jTResultado.setText(resultado);
                 jLSigno.setText("");
                 jLOperacion.setText("");
                 break;
             case "-":
-                
+                calculo = Double.parseDouble(memoria)-Double.parseDouble(resultado);
+                resultado = calculo.toString();
+                jTResultado.setText(resultado);
+                jLSigno.setText("");
+                jLOperacion.setText("");
+                break;
+            case "x":
+                calculo = Double.parseDouble(memoria)*Double.parseDouble(resultado);
+                resultado = calculo.toString();
+                jTResultado.setText(resultado);
+                jLSigno.setText("");
+                jLOperacion.setText("");
+                break;
+            case "/":
+                calculo = Double.parseDouble(memoria)/Double.parseDouble(resultado);
+                resultado = calculo.toString();
+                jTResultado.setText(resultado);
+                jLSigno.setText("");
+                jLOperacion.setText("");
                 break;
         }
         memoria="";
         
         
     }//GEN-LAST:event_jBResultadoActionPerformed
+
+    private void jBRestarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRestarActionPerformed
+        if (!(jTResultado.getText().charAt(0)=='0' && jTResultado.getText().length()==1)){
+            memoria = resultado;
+            jLOperacion.setText(memoria);
+            resultado = "";
+            jTResultado.setText("0");
+        }
+        jLSigno.setText("-");
+    }//GEN-LAST:event_jBRestarActionPerformed
+
+    private void jBMultiplicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBMultiplicarActionPerformed
+        if (!(jTResultado.getText().charAt(0)=='0' && jTResultado.getText().length()==1)){
+            memoria = resultado;
+            jLOperacion.setText(memoria);
+            resultado = "";
+            jTResultado.setText("0");
+        }
+        jLSigno.setText("x");
+    }//GEN-LAST:event_jBMultiplicarActionPerformed
+
+    private void jBDividirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBDividirActionPerformed
+        if (!(jTResultado.getText().charAt(0)=='0' && jTResultado.getText().length()==1)){
+            memoria = resultado;
+            jLOperacion.setText(memoria);
+            resultado = "";
+            jTResultado.setText("0");
+        }
+        jLSigno.setText("/");
+    }//GEN-LAST:event_jBDividirActionPerformed
+
+    private void jBRaizActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRaizActionPerformed
+        numero = Double.parseDouble(resultado);
+        Double cuadrado = Math.sqrt(numero);
+        
+        resultado = cuadrado.toString();
+        jTResultado.setText(resultado);
+    }//GEN-LAST:event_jBRaizActionPerformed
 
     /**
      * @param args the command line arguments
