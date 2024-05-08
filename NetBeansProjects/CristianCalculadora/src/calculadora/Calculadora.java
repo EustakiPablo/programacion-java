@@ -367,22 +367,37 @@ public class Calculadora extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBPorcentajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPorcentajeActionPerformed
-        // TODO add your handling code here:
+        if (!(jTResultado.getText().charAt(0) == '0' && jTResultado.getText().length() == 1)) {
+            numero = Double.parseDouble(resultado);
+            Double porcentaje = numero / 100;
+
+            resultado = porcentaje.toString();
+            jTResultado.setText(resultado);
+        }
     }//GEN-LAST:event_jBPorcentajeActionPerformed
 
     private void jBCEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCEActionPerformed
-        // TODO add your handling code here:
+        resultado = "";
+        jTResultado.setText("0");
     }//GEN-LAST:event_jBCEActionPerformed
 
     private void jBCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCActionPerformed
         resultado = "";
+        jLOperacion.setText("");
         jTResultado.setText("0");
         memoria = "";
         jLSigno.setText("");
     }//GEN-LAST:event_jBCActionPerformed
 
     private void jBRetrocesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRetrocesoActionPerformed
-        // TODO add your handling code here:
+        if (jTResultado.getText().length() == 1) {
+            jTResultado.setText("0");
+            resultado = "";
+        }
+        if (!(jTResultado.getText().charAt(0) == '0' && jTResultado.getText().length() == 1)) {
+            jTResultado.setText(resultado.substring(0, resultado.length() - 1));
+            resultado = resultado.substring(0, resultado.length() - 1);
+        }
     }//GEN-LAST:event_jBRetrocesoActionPerformed
 
     private void jBBinarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBinarioActionPerformed
@@ -395,8 +410,8 @@ public class Calculadora extends javax.swing.JFrame {
             if (resultado.charAt(0) == '-') {
                 resultado = resultado.substring(1, resultado.length());
                 jTResultado.setText(resultado);
-            }else{
-                resultado = "-"+resultado;
+            } else {
+                resultado = "-" + resultado;
                 jTResultado.setText(resultado);
             }
         }
@@ -411,156 +426,247 @@ public class Calculadora extends javax.swing.JFrame {
 
     private void jB1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB1ActionPerformed
         resultado += jB1.getText();
-        jTResultado.setText(resultado);
+        //jTResultado.setText(resultado);
+        punto++;
+        mostrarPantalla();
     }//GEN-LAST:event_jB1ActionPerformed
 
     private void jB2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB2ActionPerformed
         resultado += jB2.getText();
-        jTResultado.setText(resultado);
+        //jTResultado.setText(resultado);
+        punto++;
+        mostrarPantalla();
 
     }//GEN-LAST:event_jB2ActionPerformed
 
     private void jB0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB0ActionPerformed
         if (resultado != "") {
             resultado += jB0.getText();
-            jTResultado.setText(resultado);
+            //jTResultado.setText(resultado);
+            punto++;
+            mostrarPantalla();
         }
     }//GEN-LAST:event_jB0ActionPerformed
 
     private void jB3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB3ActionPerformed
         resultado += jB3.getText();
-        jTResultado.setText(resultado);
+        //jTResultado.setText(resultado);
+        punto++;
+        mostrarPantalla();
     }//GEN-LAST:event_jB3ActionPerformed
 
     private void jB4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB4ActionPerformed
         resultado += jB4.getText();
-        jTResultado.setText(resultado);
+        //jTResultado.setText(resultado);
+        punto++;
+        mostrarPantalla();
     }//GEN-LAST:event_jB4ActionPerformed
 
     private void jB5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB5ActionPerformed
         resultado += jB5.getText();
-        jTResultado.setText(resultado);
+        //jTResultado.setText(resultado);
+        punto++;
+        mostrarPantalla();
     }//GEN-LAST:event_jB5ActionPerformed
 
     private void jB6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB6ActionPerformed
         resultado += jB6.getText();
-        jTResultado.setText(resultado);
+        //jTResultado.setText(resultado);
+        punto++;
+        mostrarPantalla();
     }//GEN-LAST:event_jB6ActionPerformed
 
     private void jB7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB7ActionPerformed
         resultado += jB7.getText();
-        jTResultado.setText(resultado);
+        //jTResultado.setText(resultado);
+        punto++;
+        mostrarPantalla();
     }//GEN-LAST:event_jB7ActionPerformed
 
     private void jB8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB8ActionPerformed
         resultado += jB8.getText();
-        jTResultado.setText(resultado);
+        //jTResultado.setText(resultado);
+        punto++;
+        mostrarPantalla();
     }//GEN-LAST:event_jB8ActionPerformed
 
     private void jB9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB9ActionPerformed
         resultado += jB9.getText();
-        jTResultado.setText(resultado);
+        //jTResultado.setText(resultado);
+        punto++;
+        mostrarPantalla();
     }//GEN-LAST:event_jB9ActionPerformed
 
     private void jBSumarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSumarActionPerformed
-        
-        if (!(jTResultado.getText().charAt(0)=='0' && jTResultado.getText().length()==1)){
+
+        if (!(jTResultado.getText().charAt(0) == '0' && jTResultado.getText().length() == 1)) {
             memoria = resultado;
             jLOperacion.setText(memoria);
             resultado = "";
             jTResultado.setText("0");
+            jLSigno.setText("+");
         }
-        jLSigno.setText("+");
-        
-        
+
+
     }//GEN-LAST:event_jBSumarActionPerformed
 
     private void jBCuadradoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCuadradoActionPerformed
-        numero = Double.parseDouble(resultado);
-        Double cuadrado = Math.pow(numero, 2);
-        
-        resultado = cuadrado.toString();
-        jTResultado.setText(resultado);
+        if (!(jTResultado.getText().charAt(0) == '0' && jTResultado.getText().length() == 1)) {
+            numero = Double.parseDouble(resultado);
+            Double cuadrado = Math.pow(numero, 2);
+
+            resultado = cuadrado.toString();
+            jTResultado.setText(resultado);
+        }
     }//GEN-LAST:event_jBCuadradoActionPerformed
 
     private void jBResultadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBResultadoActionPerformed
         Double calculo;
-        switch(jLSigno.getText()){
+        switch (jLSigno.getText()) {
             case "+":
-                calculo = Double.parseDouble(memoria)+Double.parseDouble(resultado);
+                calculo = Double.parseDouble(memoria) + Double.parseDouble(resultado);
                 resultado = calculo.toString();
-                jTResultado.setText(resultado);
+                mostrarPantalla();
+                //jTResultado.setText(resultado);
                 jLSigno.setText("");
                 jLOperacion.setText("");
                 break;
             case "-":
-                calculo = Double.parseDouble(memoria)-Double.parseDouble(resultado);
+                calculo = Double.parseDouble(memoria) - Double.parseDouble(resultado);
                 resultado = calculo.toString();
-                jTResultado.setText(resultado);
+                mostrarPantalla();
+                //jTResultado.setText(resultado);
                 jLSigno.setText("");
                 jLOperacion.setText("");
                 break;
             case "x":
-                calculo = Double.parseDouble(memoria)*Double.parseDouble(resultado);
+                calculo = Double.parseDouble(memoria) * Double.parseDouble(resultado);
                 resultado = calculo.toString();
-                jTResultado.setText(resultado);
+                mostrarPantalla();
+                //jTResultado.setText(resultado);
                 jLSigno.setText("");
                 jLOperacion.setText("");
                 break;
             case "/":
-                calculo = Double.parseDouble(memoria)/Double.parseDouble(resultado);
+                calculo = Double.parseDouble(memoria) / Double.parseDouble(resultado);
                 resultado = calculo.toString();
-                jTResultado.setText(resultado);
+                mostrarPantalla();
+                //jTResultado.setText(resultado);
                 jLSigno.setText("");
                 jLOperacion.setText("");
                 break;
         }
-        memoria="";
-        
-        
+        memoria = "";
+
+
     }//GEN-LAST:event_jBResultadoActionPerformed
 
     private void jBRestarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRestarActionPerformed
-        if (!(jTResultado.getText().charAt(0)=='0' && jTResultado.getText().length()==1)){
+        if (!(jTResultado.getText().charAt(0) == '0' && jTResultado.getText().length() == 1)) {
             memoria = resultado;
             jLOperacion.setText(memoria);
             resultado = "";
             jTResultado.setText("0");
+            jLSigno.setText("-");
         }
-        jLSigno.setText("-");
+
     }//GEN-LAST:event_jBRestarActionPerformed
 
     private void jBMultiplicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBMultiplicarActionPerformed
-        if (!(jTResultado.getText().charAt(0)=='0' && jTResultado.getText().length()==1)){
+        if (!(jTResultado.getText().charAt(0) == '0' && jTResultado.getText().length() == 1)) {
             memoria = resultado;
             jLOperacion.setText(memoria);
             resultado = "";
             jTResultado.setText("0");
+            jLSigno.setText("x");
         }
-        jLSigno.setText("x");
+
     }//GEN-LAST:event_jBMultiplicarActionPerformed
 
     private void jBDividirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBDividirActionPerformed
-        if (!(jTResultado.getText().charAt(0)=='0' && jTResultado.getText().length()==1)){
+        if (!(jTResultado.getText().charAt(0) == '0' && jTResultado.getText().length() == 1)) {
             memoria = resultado;
             jLOperacion.setText(memoria);
             resultado = "";
             jTResultado.setText("0");
+            jLSigno.setText("/");
         }
-        jLSigno.setText("/");
+
     }//GEN-LAST:event_jBDividirActionPerformed
 
     private void jBRaizActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRaizActionPerformed
-        numero = Double.parseDouble(resultado);
-        Double cuadrado = Math.sqrt(numero);
-        
-        resultado = cuadrado.toString();
-        jTResultado.setText(resultado);
+        if (!(jTResultado.getText().charAt(0) == '0' && jTResultado.getText().length() == 1)) {
+            numero = Double.parseDouble(resultado);
+            Double cuadrado = Math.sqrt(numero);
+
+            resultado = cuadrado.toString();
+            //jTResultado.setText(resultado);
+            mostrarPantalla();
+        }
+
     }//GEN-LAST:event_jBRaizActionPerformed
 
     /**
      * @param args the command line arguments
      */
+    private void mostrarPantalla() {
+        String noDecimal = "";
+        if (resultado.contains(".")) {
+            if (resultado.indexOf('.') == resultado.length() - 2 && resultado.charAt(resultado.length() - 1) == '0') {
+                //jTResultado.setText(resultado.substring(0,resultado.length()-2));
+                resultado = resultado.substring(0, resultado.length() - 2);
+                //System.out.println(resultado.indexOf('.'));
+                noDecimal = resultado;
+            } else {
+                noDecimal = resultado.substring(0, resultado.indexOf("."));
+            }
+        } else {
+            noDecimal = resultado;
+        }
+
+        String cadenaResultado = "";
+        if (noDecimal.length() > 3) {
+            int acumulador = 0;
+            for (int i = 0; i < noDecimal.length(); i++) {
+                if (acumulador == 2) {
+                    cadenaResultado += noDecimal.charAt(i) + ".";
+                    acumulador = 0;
+                } else {
+                    cadenaResultado += noDecimal.charAt(i);
+                    acumulador++;
+                }
+
+            }
+
+            if (cadenaResultado.charAt(cadenaResultado.length() - 1) == '.') {
+                cadenaResultado = cadenaResultado.substring(0, cadenaResultado.length() - 1);
+            }
+
+        }
+        // FALTA INVERTIR LA CADENA Y CONCATENARLA CON LOS DECIMALES PARA MOSTRARLA Y LO TIENES CLEAN
+        /*for (int i = noDecimal.length(); i >= 0; i++) {
+            if (acumulador == 3) {
+                cadenaResultado += "." + noDecimal.charAt(i);
+                acumulador = 0;
+            } else {
+                cadenaResultado += noDecimal.charAt(i);
+            }
+        }
+        
+        if (acumulador >= 3) {
+                    cadenaResultado+=noDecimal.charAt(noDecimal.length()-1-i)+".";
+                    acumulador = 0;
+                }else{
+                    cadenaResultado+=noDecimal.charAt(noDecimal.length()-1-i);
+                }
+                acumulador++;
+        
+         */
+        //jTResultado.setText(resultado);
+        jTResultado.setText(resultado);
+        System.out.println(cadenaResultado);
+    }
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
