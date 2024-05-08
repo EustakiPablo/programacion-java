@@ -646,7 +646,7 @@ public class Calculadora extends javax.swing.JFrame {
         }
         // FALTA INVERTIR LA CADENA Y CONCATENARLA CON LOS DECIMALES PARA MOSTRARLA Y LO TIENES CLEAN
         for (int i = 0; i < cadenaResultado.length(); i++) {
-            cadenaResultadoInvertida+=cadenaResultado.charAt(noDecimal.length()-i);
+            cadenaResultadoInvertida+=cadenaResultado.charAt(cadenaResultado.length()-1-i);
         }
         
         
