@@ -395,8 +395,9 @@ public class Calculadora extends javax.swing.JFrame {
             resultado = "";
         }
         if (!(jTResultado.getText().charAt(0) == '0' && jTResultado.getText().length() == 1)) {
-            jTResultado.setText(resultado.substring(0, resultado.length() - 1));
+            //jTResultado.setText(resultado.substring(0, resultado.length() - 1));
             resultado = resultado.substring(0, resultado.length() - 1);
+            mostrarPantalla();
         }
     }//GEN-LAST:event_jBRetrocesoActionPerformed
 
@@ -409,10 +410,14 @@ public class Calculadora extends javax.swing.JFrame {
         if ((resultado != "")) {
             if (resultado.charAt(0) == '-') {
                 resultado = resultado.substring(1, resultado.length());
-                jTResultado.setText(resultado);
+                //jTResultado.setText(resultado);
+                negativo = false;
+                mostrarPantalla();
             } else {
                 resultado = "-" + resultado;
-                jTResultado.setText(resultado);
+                //jTResultado.setText(resultado);
+                negativo = true;
+                mostrarPantalla();
             }
         }
         /*if (resultado.charAt(0) == '-') {
@@ -610,18 +615,19 @@ public class Calculadora extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     private void mostrarPantalla() {
+        String trabajar = resultado;
         String noDecimal = "";
-        if (resultado.contains(".")) {
-            if (resultado.indexOf('.') == resultado.length() - 2 && resultado.charAt(resultado.length() - 1) == '0') {
+        if (trabajar.contains(".")) {
+            if (trabajar.indexOf('.') == trabajar.length() - 2 && trabajar.charAt(trabajar.length() - 1) == '0') {
                 //jTResultado.setText(resultado.substring(0,resultado.length()-2));
                 resultado = resultado.substring(0, resultado.length() - 2);
                 //System.out.println(resultado.indexOf('.'));
-                noDecimal = resultado;
+                noDecimal = trabajar;
             } else {
-                noDecimal = resultado.substring(0, resultado.indexOf("."));
+                noDecimal = trabajar.substring(0, trabajar.indexOf("."));
             }
         } else {
-            noDecimal = resultado;
+            noDecimal = trabajar;
         }
 
         String cadenaResultado = "";
@@ -630,10 +636,10 @@ public class Calculadora extends javax.swing.JFrame {
             int acumulador = 0;
             for (int i = 0; i < noDecimal.length(); i++) {
                 if (acumulador == 2) {
-                    cadenaResultado += noDecimal.charAt(noDecimal.length()-1-i) + ".";
+                    cadenaResultado += noDecimal.charAt(noDecimal.length() - 1 - i) + ".";
                     acumulador = 0;
                 } else {
-                    cadenaResultado += noDecimal.charAt(noDecimal.length()-1-i);
+                    cadenaResultado += noDecimal.charAt(noDecimal.length() - 1 - i);
                     acumulador++;
                 }
 
@@ -646,23 +652,26 @@ public class Calculadora extends javax.swing.JFrame {
         }
         // FALTA INVERTIR LA CADENA Y CONCATENARLA CON LOS DECIMALES PARA MOSTRARLA Y LO TIENES CLEAN
         for (int i = 0; i < cadenaResultado.length(); i++) {
-            cadenaResultadoInvertida+=cadenaResultado.charAt(cadenaResultado.length()-1-i);
+            cadenaResultadoInvertida += cadenaResultado.charAt(cadenaResultado.length() - 1 - i);
         }
-        
-        
-        
-        
+
         //jTResultado.setText(resultado);
-        if (cadenaResultadoInvertida.length()==0) {
-            jTResultado.setText(resultado);
-        }else{
+        String cadenaFinal = "";
+        if (cadenaResultadoInvertida.length() == 0) {
+            //jTResultado.setText(resultado);
+            cadenaFinal=resultado;
+        } else {
             if (resultado.contains(".")) {
-            jTResultado.setText(cadenaResultadoInvertida+resultado.substring(resultado.indexOf("."), resultado.length()-1));
-        }else{
-            jTResultado.setText(cadenaResultadoInvertida);
-        }
+                //jTResultado.setText(cadenaResultadoInvertida + resultado.substring(resultado.indexOf("."), resultado.length() - 1));
+                cadenaFinal = cadenaResultadoInvertida + resultado.substring(resultado.indexOf("."), resultado.length() - 1);
+            } else {
+                //jTResultado.setText(cadenaResultadoInvertida);
+                cadenaFinal=cadenaResultadoInvertida;
+            }
         }
         
+        
+        jTResultado.setText(cadenaFinal);
         //jTResultado.setText(cadenaResultadoInvertida);
         //System.out.println(cadenaResultado);
         //System.out.println(cadenaResultadoInvertida);
@@ -703,6 +712,7 @@ public class Calculadora extends javax.swing.JFrame {
     private String resultado = "";
     private String memoria;
     private int punto = 0;
+    private boolean negativo = false;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jB0;
     private javax.swing.JButton jB1;
