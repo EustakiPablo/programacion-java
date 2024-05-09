@@ -551,6 +551,7 @@ public class Calculadora extends javax.swing.JFrame {
 
     private void jBResultadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBResultadoActionPerformed
         Double calculo;
+        igual = true;
         switch (jLSigno.getText()) {
             case "+":
                 calculo = Double.parseDouble(memoria) + Double.parseDouble(resultado);
@@ -655,7 +656,7 @@ public class Calculadora extends javax.swing.JFrame {
     private void mostrarPantalla() {
         String noDecimal = "";
         if (resultado.contains(".")) {
-            if (resultado.indexOf('.') == resultado.length() - 2 && resultado.charAt(resultado.length() - 1) == '0') {
+            if (resultado.indexOf('.') == resultado.length() - 2 && resultado.charAt(resultado.length() - 1) == '0' && igual) {
                 //jTResultado.setText(resultado.substring(0,resultado.length()-2));
                 resultado = resultado.substring(0, resultado.length() - 2);
                 //System.out.println(resultado.indexOf('.'));
@@ -708,6 +709,7 @@ public class Calculadora extends javax.swing.JFrame {
         }
 
         jTResultado.setText(cadenaFinal);
+        igual = false;
         //jTResultado.setText(cadenaResultadoInvertida);
         //System.out.println(cadenaResultado);
         //System.out.println(cadenaResultadoInvertida);
@@ -814,6 +816,7 @@ public class Calculadora extends javax.swing.JFrame {
     private String memoria;
     private int punto = 0;
     private boolean negativo = false;
+    private boolean igual = false;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jB0;
     private javax.swing.JButton jB1;
