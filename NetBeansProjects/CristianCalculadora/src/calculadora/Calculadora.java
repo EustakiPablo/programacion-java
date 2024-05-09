@@ -426,7 +426,7 @@ public class Calculadora extends javax.swing.JFrame {
                     binarioDecimal += "0";
                 }
             }
-            resultado = binarioNoDecimal+"."+binarioDecimal;
+            resultado = binarioNoDecimal + "." + binarioDecimal;
             mostrarPantalla();
         }
     }//GEN-LAST:event_jBBinarioActionPerformed
@@ -545,7 +545,9 @@ public class Calculadora extends javax.swing.JFrame {
             Double cuadrado = Math.pow(numero, 2);
 
             resultado = cuadrado.toString();
-            jTResultado.setText(resultado);
+            igual = true;
+            //jTResultado.setText(resultado);
+            mostrarPantalla();
         }
     }//GEN-LAST:event_jBCuadradoActionPerformed
 
@@ -554,7 +556,12 @@ public class Calculadora extends javax.swing.JFrame {
         igual = true;
         switch (jLSigno.getText()) {
             case "+":
-                calculo = Double.parseDouble(memoria) + Double.parseDouble(resultado);
+                if (memoria == "" || resultado == "") {
+                    calculo = 0.0;
+                } else {
+                    calculo = Double.parseDouble(memoria) + Double.parseDouble(resultado);
+                }
+
                 resultado = calculo.toString();
                 mostrarPantalla();
                 //jTResultado.setText(resultado);
@@ -562,7 +569,12 @@ public class Calculadora extends javax.swing.JFrame {
                 jLOperacion.setText("");
                 break;
             case "-":
-                calculo = Double.parseDouble(memoria) - Double.parseDouble(resultado);
+                if (memoria == "" || resultado == "") {
+                    calculo = 0.0;
+                } else {
+                    calculo = Double.parseDouble(memoria) - Double.parseDouble(resultado);
+                }
+
                 resultado = calculo.toString();
                 mostrarPantalla();
                 //jTResultado.setText(resultado);
@@ -570,7 +582,12 @@ public class Calculadora extends javax.swing.JFrame {
                 jLOperacion.setText("");
                 break;
             case "x":
-                calculo = Double.parseDouble(memoria) * Double.parseDouble(resultado);
+                if (memoria == "" || resultado == "") {
+                    calculo = 0.0;
+                } else {
+                    calculo = Double.parseDouble(memoria) * Double.parseDouble(resultado);
+                }
+
                 resultado = calculo.toString();
                 mostrarPantalla();
                 //jTResultado.setText(resultado);
@@ -578,9 +595,15 @@ public class Calculadora extends javax.swing.JFrame {
                 jLOperacion.setText("");
                 break;
             case "/":
-                calculo = Double.parseDouble(memoria) / Double.parseDouble(resultado);
-                resultado = calculo.toString();
-                mostrarPantalla();
+                if (memoria == "" || resultado == "") {
+                    //calculo = 0.0;
+                    jTResultado.setText("Syntax Error");
+                } else {
+                    calculo = Double.parseDouble(memoria) / Double.parseDouble(resultado);
+                    resultado = calculo.toString();
+                    mostrarPantalla();
+                }
+
                 //jTResultado.setText(resultado);
                 jLSigno.setText("");
                 jLOperacion.setText("");
@@ -634,6 +657,7 @@ public class Calculadora extends javax.swing.JFrame {
 
             resultado = cuadrado.toString();
             //jTResultado.setText(resultado);
+            igual = true;
             mostrarPantalla();
         }
     }//GEN-LAST:event_jBRaizActionPerformed
@@ -715,11 +739,8 @@ public class Calculadora extends javax.swing.JFrame {
         //System.out.println(cadenaResultadoInvertida);
         //System.out.println(resultado);
     }
-    
-    
-    
-    
-    public void mostrarMemoria(){
+
+    public void mostrarMemoria() {
         String noDecimal = "";
         if (memoria.contains(".")) {
             if (memoria.indexOf('.') == memoria.length() - 2 && memoria.charAt(resultado.length() - 1) == '0') {
@@ -780,6 +801,7 @@ public class Calculadora extends javax.swing.JFrame {
         //System.out.println(cadenaResultadoInvertida);
         //System.out.println(resultado);
     }
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
