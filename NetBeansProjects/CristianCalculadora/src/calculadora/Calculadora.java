@@ -410,13 +410,11 @@ public class Calculadora extends javax.swing.JFrame {
         if ((resultado != "")) {
             if (resultado.charAt(0) == '-') {
                 resultado = resultado.substring(1, resultado.length());
-                //jTResultado.setText(resultado);
-                negativo = false;
+
                 mostrarPantalla();
             } else {
                 resultado = "-" + resultado;
-                //jTResultado.setText(resultado);
-                negativo = true;
+
                 mostrarPantalla();
             }
         }
@@ -659,18 +657,17 @@ public class Calculadora extends javax.swing.JFrame {
         String cadenaFinal = "";
         if (cadenaResultadoInvertida.length() == 0) {
             //jTResultado.setText(resultado);
-            cadenaFinal=resultado;
+            cadenaFinal = resultado;
         } else {
             if (resultado.contains(".")) {
                 //jTResultado.setText(cadenaResultadoInvertida + resultado.substring(resultado.indexOf("."), resultado.length() - 1));
                 cadenaFinal = cadenaResultadoInvertida + resultado.substring(resultado.indexOf("."), resultado.length() - 1);
             } else {
                 //jTResultado.setText(cadenaResultadoInvertida);
-                cadenaFinal=cadenaResultadoInvertida;
+                cadenaFinal = cadenaResultadoInvertida;
             }
         }
-        
-        
+
         jTResultado.setText(cadenaFinal);
         //jTResultado.setText(cadenaResultadoInvertida);
         //System.out.println(cadenaResultado);
