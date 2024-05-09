@@ -391,6 +391,7 @@ public class Calculadora extends javax.swing.JFrame {
         jLOperacion.setText("");
         jTResultado.setText("0");
         memoria = "";
+        negativo = false;
         jLSigno.setText("");
     }//GEN-LAST:event_jBCActionPerformed
 
@@ -528,7 +529,8 @@ public class Calculadora extends javax.swing.JFrame {
 
         if (!(jTResultado.getText().charAt(0) == '0' && jTResultado.getText().length() == 1)) {
             memoria = resultado;
-            jLOperacion.setText(memoria);
+            //jLOperacion.setText(memoria);
+            mostrarMemoria();
             resultado = "";
             jTResultado.setText("0");
             jLSigno.setText("+");
@@ -591,7 +593,8 @@ public class Calculadora extends javax.swing.JFrame {
     private void jBRestarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRestarActionPerformed
         if (!(jTResultado.getText().charAt(0) == '0' && jTResultado.getText().length() == 1)) {
             memoria = resultado;
-            jLOperacion.setText(memoria);
+            //jLOperacion.setText(memoria);
+            mostrarMemoria();
             resultado = "";
             jTResultado.setText("0");
             jLSigno.setText("-");
@@ -602,7 +605,8 @@ public class Calculadora extends javax.swing.JFrame {
     private void jBMultiplicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBMultiplicarActionPerformed
         if (!(jTResultado.getText().charAt(0) == '0' && jTResultado.getText().length() == 1)) {
             memoria = resultado;
-            jLOperacion.setText(memoria);
+            //jLOperacion.setText(memoria);
+            mostrarMemoria();
             resultado = "";
             jTResultado.setText("0");
             jLSigno.setText("x");
@@ -613,7 +617,8 @@ public class Calculadora extends javax.swing.JFrame {
     private void jBDividirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBDividirActionPerformed
         if (!(jTResultado.getText().charAt(0) == '0' && jTResultado.getText().length() == 1)) {
             memoria = resultado;
-            jLOperacion.setText(memoria);
+            //jLOperacion.setText(memoria);
+            mostrarMemoria();
             resultado = "";
             jTResultado.setText("0");
             jLSigno.setText("/");
@@ -630,14 +635,15 @@ public class Calculadora extends javax.swing.JFrame {
             //jTResultado.setText(resultado);
             mostrarPantalla();
         }
-
     }//GEN-LAST:event_jBRaizActionPerformed
 
     private void jBFloatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBFloatActionPerformed
         if (resultado == "") {
             resultado += "0.";
         } else {
-            resultado += ".";
+            if (!resultado.contains(".")) {
+                resultado += ".";
+            }
         }
         //jTResultado.setText(resultado);
         mostrarPantalla();
@@ -707,7 +713,71 @@ public class Calculadora extends javax.swing.JFrame {
         //System.out.println(cadenaResultadoInvertida);
         //System.out.println(resultado);
     }
+    
+    
+    
+    
+    public void mostrarMemoria(){
+        String noDecimal = "";
+        if (memoria.contains(".")) {
+            if (memoria.indexOf('.') == memoria.length() - 2 && memoria.charAt(resultado.length() - 1) == '0') {
+                //jTResultado.setText(resultado.substring(0,resultado.length()-2));
+                memoria = memoria.substring(0, memoria.length() - 2);
+                //System.out.println(resultado.indexOf('.'));
+                noDecimal = memoria;
+            } else {
+                noDecimal = memoria.substring(0, memoria.indexOf("."));
+            }
+        } else {
+            noDecimal = memoria;
+        }
 
+        String cadenaResultado = "";
+        String cadenaResultadoInvertida = "";
+        if (noDecimal.length() > 3) {
+            int acumulador = 0;
+            for (int i = 0; i < noDecimal.length(); i++) {
+                if (acumulador == 2) {
+                    cadenaResultado += noDecimal.charAt(noDecimal.length() - 1 - i) + ".";
+                    acumulador = 0;
+                } else {
+                    cadenaResultado += noDecimal.charAt(noDecimal.length() - 1 - i);
+                    acumulador++;
+                }
+
+            }
+
+            if (cadenaResultado.charAt(cadenaResultado.length() - 1) == '.') {
+                cadenaResultado = cadenaResultado.substring(0, cadenaResultado.length() - 1);
+            }
+
+        }
+        // FALTA INVERTIR LA CADENA Y CONCATENARLA CON LOS DECIMALES PARA MOSTRARLA Y LO TIENES CLEAN
+        for (int i = 0; i < cadenaResultado.length(); i++) {
+            cadenaResultadoInvertida += cadenaResultado.charAt(cadenaResultado.length() - 1 - i);
+        }
+
+        //jTResultado.setText(resultado);
+        String cadenaFinal = "";
+        if (cadenaResultadoInvertida.length() == 0) {
+            //jTResultado.setText(resultado);
+            cadenaFinal = memoria.replace(".", ",");
+        } else {
+            if (memoria.contains(".")) {
+                //jTResultado.setText(cadenaResultadoInvertida + resultado.substring(resultado.indexOf("."), resultado.length() - 1));
+                cadenaFinal = cadenaResultadoInvertida + "," + memoria.substring(memoria.indexOf("."), memoria.length() - 1).replace(".", "");
+            } else {
+                //jTResultado.setText(cadenaResultadoInvertida);
+                cadenaFinal = cadenaResultadoInvertida;
+            }
+        }
+
+        jLOperacion.setText(cadenaFinal);
+        //jTResultado.setText(cadenaResultadoInvertida);
+        //System.out.println(cadenaResultado);
+        //System.out.println(cadenaResultadoInvertida);
+        //System.out.println(resultado);
+    }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
