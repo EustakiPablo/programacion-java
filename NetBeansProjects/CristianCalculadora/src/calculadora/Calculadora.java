@@ -409,10 +409,10 @@ public class Calculadora extends javax.swing.JFrame {
         if ((resultado != "")) {
             if (resultado.charAt(0) == '-') {
                 resultado = resultado.substring(1, resultado.length());
-                jTResultado.setText(resultado);
+                mostrarPantalla();
             } else {
                 resultado = "-" + resultado;
-                jTResultado.setText(resultado);
+                mostrarPantalla();
             }
         }
         /*if (resultado.charAt(0) == '-') {
