@@ -561,9 +561,13 @@ public class Calculadora extends javax.swing.JFrame {
                 } else {
                     calculo = Double.parseDouble(memoria) + Double.parseDouble(resultado);
                 }
-
-                resultado = calculo.toString();
-                mostrarPantalla();
+                if (calculo == 0.0) {
+                    resultado = "";
+                    jTResultado.setText("0");
+                }else{
+                    resultado = calculo.toString();
+                    mostrarPantalla();
+                }
                 //jTResultado.setText(resultado);
                 jLSigno.setText("");
                 jLOperacion.setText("");
@@ -575,8 +579,13 @@ public class Calculadora extends javax.swing.JFrame {
                     calculo = Double.parseDouble(memoria) - Double.parseDouble(resultado);
                 }
 
-                resultado = calculo.toString();
-                mostrarPantalla();
+                if (calculo == 0.0) {
+                    resultado = "";
+                    jTResultado.setText("0");
+                }else{
+                    resultado = calculo.toString();
+                    mostrarPantalla();
+                }
                 //jTResultado.setText(resultado);
                 jLSigno.setText("");
                 jLOperacion.setText("");
@@ -588,8 +597,13 @@ public class Calculadora extends javax.swing.JFrame {
                     calculo = Double.parseDouble(memoria) * Double.parseDouble(resultado);
                 }
 
-                resultado = calculo.toString();
-                mostrarPantalla();
+                if (calculo == 0.0) {
+                    resultado = "";
+                    jTResultado.setText("0");
+                }else{
+                    resultado = calculo.toString();
+                    mostrarPantalla();
+                }
                 //jTResultado.setText(resultado);
                 jLSigno.setText("");
                 jLOperacion.setText("");
@@ -742,9 +756,9 @@ public class Calculadora extends javax.swing.JFrame {
         jTResultado.setText(cadenaFinal);
         igual = false;
         //jTResultado.setText(cadenaResultadoInvertida);
-        System.out.println(cadenaResultado);
-        System.out.println(cadenaResultadoInvertida);
-        System.out.println(resultado);
+        //System.out.println(cadenaResultado);
+        //System.out.println(cadenaResultadoInvertida);
+        //System.out.println(resultado);
     }
 
     public void mostrarMemoria() {
