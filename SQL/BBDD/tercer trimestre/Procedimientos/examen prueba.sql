@@ -257,7 +257,7 @@ DROP PROCEDURE IF EXISTS sumaFactoriales;
 DELIMITER //
 CREATE PROCEDURE sumaFactoriales()
 BEGIN
-	-- numero que toca factorial
+	-- numero que toca hacer factorial
 	DECLARE num INT DEFAULT 1;
     -- acumulador de números hasta que sea igual a la variable num
     DECLARE acumulador INT DEFAULT 1;
@@ -285,8 +285,46 @@ DELIMITER ;
 CALL sumaFactoriales();
 
 -- Ejercicio 16
+DROP PROCEDURE IF EXISTS tablaMult;
+DELIMITER //
+CREATE PROCEDURE tablaMult(IN num INT)
+BEGIN
+	DECLARE contador INT DEFAULT 1;
+    DECLARE contadorFinal INT DEFAULT 10;
+    DECLARE tablas VARCHAR(255) DEFAULT "";
+    WHILE (contador<=contadorFinal) DO
+		SET tablas = CONCAT(tablas,(num*contador),", ");
+        SET contador = contador+1;
+    END WHILE;
+    SET tablas = SUBSTR(tablas,1,LENGTH(tablas)-2);
+    SELECT tablas;
+END //
+DELIMITER ;
+CALL tablaMult(2);
 
 
+-- Ejercicio 17
+DROP FUNCTION IF EXISTS valorProducto;
+DELIMITER //
+CREATE FUNCTION valorProducto(coste FLOAT,porcentaje INT) RETURNS FLOAT DETERMINISTIC
+BEGIN
+	DECLARE porcent FLOAT DEFAULT porcentaje/100;
+    DECLARE precioFinal FLOAT DEFAULT 0;
+    SET precioFinal = (coste*porcent)+coste;
+    RETURN precioFinal;
+END //
+DELIMITER ;
+SET @a = valorProducto(2000,15);
+SELECT @a;
+
+-- Ejercicio 18
+DROP TABLE IF EXISTS valoresProductos;
+CREATE TABLE valoresProductos(
+	coste FLOAT,
+    porcentaje INT,
+    precioFinal FLOAT
+);
+INSERT INTO valoresProductos VALUES (2000,15,valorProducto(2000,15));
 
 /*delimiter //
 CREATE PROCEDURE potencia(IN base INT, IN exponente INT, OUT resultado INT)

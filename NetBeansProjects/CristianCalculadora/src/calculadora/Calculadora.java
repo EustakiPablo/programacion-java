@@ -433,7 +433,7 @@ public class Calculadora extends javax.swing.JFrame {
 
     private void jBInvertirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBInvertirActionPerformed
         //menos
-        if ((resultado != "")) {
+        if ((resultado != "" && resultado != "0" && Double.parseDouble(resultado)!=0.0)) {
             if (resultado.charAt(0) == '-') {
                 resultado = resultado.substring(1, resultado.length());
 
@@ -691,7 +691,12 @@ public class Calculadora extends javax.swing.JFrame {
         } else {
             noDecimal = resultado;
         }
-
+        if (resultado.contains("-")) {
+            negativo = true;
+            noDecimal = noDecimal.replace("-", "");
+        }else{
+            negativo = false;
+        }
         String cadenaResultado = "";
         String cadenaResultadoInvertida = "";
         if (noDecimal.length() > 3) {
@@ -731,13 +736,15 @@ public class Calculadora extends javax.swing.JFrame {
                 cadenaFinal = cadenaResultadoInvertida;
             }
         }
-
+        if (negativo&&noDecimal.length() > 3) {
+            cadenaFinal = "-"+cadenaFinal;
+        }
         jTResultado.setText(cadenaFinal);
         igual = false;
         //jTResultado.setText(cadenaResultadoInvertida);
-        //System.out.println(cadenaResultado);
-        //System.out.println(cadenaResultadoInvertida);
-        //System.out.println(resultado);
+        System.out.println(cadenaResultado);
+        System.out.println(cadenaResultadoInvertida);
+        System.out.println(resultado);
     }
 
     public void mostrarMemoria() {
