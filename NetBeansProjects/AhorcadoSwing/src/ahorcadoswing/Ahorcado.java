@@ -5,6 +5,8 @@
 package ahorcadoswing;
 
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.Arrays;
 import javax.swing.ImageIcon;
 
 /**
@@ -61,8 +63,11 @@ public class Ahorcado extends javax.swing.JFrame {
         jButtonNuevaPartida = new javax.swing.JButton();
         jButtonAsignarPalabra = new javax.swing.JButton();
         jLabelPalabraOculta = new javax.swing.JLabel();
+        jButtonPalabraAleatoria = new javax.swing.JButton();
+        jLabelErroresLog = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jToggleButtonA.setText("A");
         jToggleButtonA.addActionListener(new java.awt.event.ActionListener() {
@@ -84,20 +89,60 @@ public class Ahorcado extends javax.swing.JFrame {
         });
 
         jToggleButtonC.setText("C");
+        jToggleButtonC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButtonCActionPerformed(evt);
+            }
+        });
 
         jToggleButtonD.setText("D");
+        jToggleButtonD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButtonDActionPerformed(evt);
+            }
+        });
 
         jToggleButtonF.setText("F");
+        jToggleButtonF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButtonFActionPerformed(evt);
+            }
+        });
 
         jToggleButtonE.setText("E");
+        jToggleButtonE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButtonEActionPerformed(evt);
+            }
+        });
 
         jToggleButtonL.setText("L");
+        jToggleButtonL.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButtonLActionPerformed(evt);
+            }
+        });
 
         jToggleButtonK.setText("K");
+        jToggleButtonK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButtonKActionPerformed(evt);
+            }
+        });
 
         jToggleButtonJ.setText("J");
+        jToggleButtonJ.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButtonJActionPerformed(evt);
+            }
+        });
 
         jToggleButtonI.setText("I");
+        jToggleButtonI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButtonIActionPerformed(evt);
+            }
+        });
 
         jToggleButtonH.setText("H");
         jToggleButtonH.addActionListener(new java.awt.event.ActionListener() {
@@ -107,8 +152,18 @@ public class Ahorcado extends javax.swing.JFrame {
         });
 
         jToggleButtonG.setText("G");
+        jToggleButtonG.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButtonGActionPerformed(evt);
+            }
+        });
 
         jToggleButtonM.setText("M");
+        jToggleButtonM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButtonMActionPerformed(evt);
+            }
+        });
 
         jToggleButtonN.setText("N");
         jToggleButtonN.addActionListener(new java.awt.event.ActionListener() {
@@ -118,14 +173,39 @@ public class Ahorcado extends javax.swing.JFrame {
         });
 
         jToggleButtonNY.setText("Ñ");
+        jToggleButtonNY.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButtonNYActionPerformed(evt);
+            }
+        });
 
         jToggleButtonO.setText("O");
+        jToggleButtonO.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButtonOActionPerformed(evt);
+            }
+        });
 
         jToggleButtonP.setText("P");
+        jToggleButtonP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButtonPActionPerformed(evt);
+            }
+        });
 
         jToggleButtonQ.setText("Q");
+        jToggleButtonQ.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButtonQActionPerformed(evt);
+            }
+        });
 
         jToggleButtonR.setText("R");
+        jToggleButtonR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButtonRActionPerformed(evt);
+            }
+        });
 
         jToggleButtonS.setText("S");
         jToggleButtonS.addActionListener(new java.awt.event.ActionListener() {
@@ -135,15 +215,40 @@ public class Ahorcado extends javax.swing.JFrame {
         });
 
         jToggleButtonT.setText("T");
+        jToggleButtonT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButtonTActionPerformed(evt);
+            }
+        });
 
         jToggleButtonU.setText("U");
+        jToggleButtonU.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButtonUActionPerformed(evt);
+            }
+        });
 
         jToggleButtonV.setText("V");
+        jToggleButtonV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButtonVActionPerformed(evt);
+            }
+        });
 
         jToggleButtonW.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         jToggleButtonW.setText("W");
+        jToggleButtonW.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButtonWActionPerformed(evt);
+            }
+        });
 
         jToggleButtonX.setText("X");
+        jToggleButtonX.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButtonXActionPerformed(evt);
+            }
+        });
 
         jToggleButtonY.setText("Y");
         jToggleButtonY.addActionListener(new java.awt.event.ActionListener() {
@@ -153,10 +258,20 @@ public class Ahorcado extends javax.swing.JFrame {
         });
 
         jToggleButtonZ.setText("Z");
+        jToggleButtonZ.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButtonZActionPerformed(evt);
+            }
+        });
 
         jPasswordFieldPalabra.setToolTipText("Palabra para jugar");
 
         jButtonNuevaPartida.setText("Nueva partida");
+        jButtonNuevaPartida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonNuevaPartidaActionPerformed(evt);
+            }
+        });
 
         jButtonAsignarPalabra.setText("Asignar palabra");
         jButtonAsignarPalabra.addActionListener(new java.awt.event.ActionListener() {
@@ -166,101 +281,124 @@ public class Ahorcado extends javax.swing.JFrame {
         });
 
         jLabelPalabraOculta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelPalabraOculta.setFocusable(false);
+
+        jButtonPalabraAleatoria.setText("Palabra Aleatoria");
+        jButtonPalabraAleatoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPalabraAleatoriaActionPerformed(evt);
+            }
+        });
+
+        jLabelErroresLog.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPasswordFieldPalabra)
-                    .addComponent(jButtonAsignarPalabra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonNuevaPartida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 164, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(jToggleButtonH, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(jToggleButtonI, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(jToggleButtonJ, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(jToggleButtonK, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(jToggleButtonL, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(jToggleButtonM, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(jToggleButtonN, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jToggleButtonA, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(jToggleButtonB, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(jToggleButtonC, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(jToggleButtonD, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(jToggleButtonE, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(jToggleButtonF, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(jToggleButtonG, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jToggleButtonNY, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jToggleButtonO, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jToggleButtonP, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jToggleButtonQ, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jToggleButtonR, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jToggleButtonS, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jToggleButtonU, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jToggleButtonV, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jToggleButtonW, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jToggleButtonX, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jToggleButtonY, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jToggleButtonZ, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(55, 55, 55)
-                                    .addComponent(jLabelPalabraOculta, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGap(18, 18, 18)
-                            .addComponent(jToggleButtonT, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(73, 73, 73))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(jLabelImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(158, 158, 158)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jToggleButtonJ, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jToggleButtonK, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jToggleButtonA, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jToggleButtonB, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jToggleButtonR, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jToggleButtonS, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(18, 18, 18))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jPasswordFieldPalabra)
+                                    .addComponent(jButtonAsignarPalabra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButtonNuevaPartida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButtonPalabraAleatoria, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jToggleButtonL, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jToggleButtonM, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jToggleButtonN, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jToggleButtonNY, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jToggleButtonO, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jToggleButtonP, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jToggleButtonQ, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jToggleButtonT, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jToggleButtonU, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jToggleButtonV, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jToggleButtonW, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jToggleButtonX, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jToggleButtonY, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jToggleButtonZ, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jLabelErroresLog, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(jToggleButtonC, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jToggleButtonD, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jToggleButtonE, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jToggleButtonF, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jToggleButtonG, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabelPalabraOculta, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addComponent(jToggleButtonH, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jToggleButtonI, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabelImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(136, 136, 136)))
+                .addGap(128, 128, 128))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(12, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jPasswordFieldPalabra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButtonAsignarPalabra)
-                        .addGap(185, 185, 185)
-                        .addComponent(jButtonNuevaPartida))
+                        .addComponent(jButtonAsignarPalabra))
+                    .addComponent(jLabelErroresLog, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabelImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
+                        .addComponent(jButtonPalabraAleatoria))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
                         .addComponent(jLabelPalabraOculta, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jButtonNuevaPartida)
+                .addGap(27, 27, 27)
+                .addComponent(jLabelImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jToggleButtonA, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jToggleButtonB, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -268,57 +406,65 @@ public class Ahorcado extends javax.swing.JFrame {
                     .addComponent(jToggleButtonD, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jToggleButtonE, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jToggleButtonF, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jToggleButtonG, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jToggleButtonG, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jToggleButtonH, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jToggleButtonI, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jToggleButtonH, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jToggleButtonI, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jToggleButtonJ, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jToggleButtonK, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jToggleButtonL, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jToggleButtonM, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jToggleButtonN, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jToggleButtonN, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jToggleButtonNY, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jToggleButtonO, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jToggleButtonP, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jToggleButtonQ, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jToggleButtonR, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jToggleButtonS, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jToggleButtonT, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jToggleButtonQ, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jToggleButtonR, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jToggleButtonS, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jToggleButtonT, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jToggleButtonU, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jToggleButtonV, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jToggleButtonW, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jToggleButtonX, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jToggleButtonY, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jToggleButtonZ, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18))
+                .addGap(37, 37, 37))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jToggleButtonBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonBActionPerformed
-        // TODO add your handling code here:
+        if (jugando && !usadas.contains(jToggleButtonB.getText())) {
+            jToggleButtonB.setBackground(juego(jToggleButtonB.getText()));
+        }
     }//GEN-LAST:event_jToggleButtonBActionPerformed
 
     private void jToggleButtonHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonHActionPerformed
-        // TODO add your handling code here:
+        if (jugando && !usadas.contains(jToggleButtonH.getText())) {
+            jToggleButtonH.setBackground(juego(jToggleButtonH.getText()));
+        }
     }//GEN-LAST:event_jToggleButtonHActionPerformed
 
     private void jToggleButtonNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonNActionPerformed
-        // TODO add your handling code here:
+        if (jugando && !usadas.contains(jToggleButtonN.getText())) {
+            jToggleButtonN.setBackground(juego(jToggleButtonN.getText()));
+        }
     }//GEN-LAST:event_jToggleButtonNActionPerformed
 
     private void jToggleButtonSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonSActionPerformed
-        // TODO add your handling code here:
+        if (jugando && !usadas.contains(jToggleButtonS.getText())) {
+            jToggleButtonS.setBackground(juego(jToggleButtonS.getText()));
+        }
     }//GEN-LAST:event_jToggleButtonSActionPerformed
 
     private void jToggleButtonYActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonYActionPerformed
-        // TODO add your handling code here:
+        if (jugando && !usadas.contains(jToggleButtonY.getText())) {
+            jToggleButtonY.setBackground(juego(jToggleButtonY.getText()));
+        }
     }//GEN-LAST:event_jToggleButtonYActionPerformed
 
     private void jToggleButtonAKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jToggleButtonAKeyPressed
@@ -326,22 +472,294 @@ public class Ahorcado extends javax.swing.JFrame {
     }//GEN-LAST:event_jToggleButtonAKeyPressed
 
     private void jToggleButtonAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonAActionPerformed
-        jLabelImagen.setIcon(new ImageIcon(getClass().getResource("../img/ahorcado1.jpg")));
-        jToggleButtonA.setBackground(Color.red);
-        //jToggleButtonA.setEnabled(false);
-        
+        if (jugando && !usadas.contains(jToggleButtonA.getText())) {
+            jToggleButtonA.setBackground(juego(jToggleButtonA.getText()));
+        }
     }//GEN-LAST:event_jToggleButtonAActionPerformed
 
     private void jButtonAsignarPalabraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAsignarPalabraActionPerformed
-        //jPasswordFieldPalabra
-        palabra = new char[jPasswordFieldPalabra.getPassword().length];
-        palabra = jPasswordFieldPalabra.getPassword();
-        for (int i = 0; i < palabra.length; i++) {
-            palabraOcultaMostrar += "_";
+        String noPermitidos = "1234567890!@#$%^&*()-_=+[{]}|;:',<.>/?¡¿";
+        String[] arrayNoPermitidos = noPermitidos.split("");
+        arrayPalabra = new char[jPasswordFieldPalabra.getPassword().length];
+        arrayPalabra = jPasswordFieldPalabra.getPassword();
+        String comprobarPalabra = new String(arrayPalabra).toUpperCase();
+        if (!comprobarPalabra.contains(" ") && !comprobarPalabra.isBlank()) {
+            boolean permitido = true;
+            for (String caracter : arrayNoPermitidos) {
+                if (comprobarPalabra.contains(caracter)) {
+                    permitido = false;
+                }
+            }
+            if (permitido) {
+                jugando = true;
+                jLabelErroresLog.setText("");
+                asignarPalabra(comprobarPalabra);
+            }else{
+                jLabelErroresLog.setText("No puede tener números \no caracteres especiales");
+            }
+        }else{
+            jLabelErroresLog.setText("No se permiten espacios o dejar vacío el campo,\n prueba de nuevo");
         }
-        jLabelPalabraOculta.setText(palabraOcultaMostrar);
     }//GEN-LAST:event_jButtonAsignarPalabraActionPerformed
 
+    private void jButtonPalabraAleatoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPalabraAleatoriaActionPerformed
+        String[] palabrasAleatorias = {"Perplejo", "Bambu", "Esplendido", "Melodia", "Efimero", "Alboroto", "Serenidad", "Travesura", "Integro", "Jubiloso"};
+        int aleatorio = (int) (Math.random()*10);
+        jugando = true;
+        asignarPalabra(palabrasAleatorias[aleatorio].toUpperCase());
+    }//GEN-LAST:event_jButtonPalabraAleatoriaActionPerformed
+
+    private void jToggleButtonQActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonQActionPerformed
+        if (jugando && !usadas.contains(jToggleButtonQ.getText())) {
+            jToggleButtonQ.setBackground(juego(jToggleButtonQ.getText()));
+        }
+    }//GEN-LAST:event_jToggleButtonQActionPerformed
+
+    private void jToggleButtonOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonOActionPerformed
+        if (jugando && !usadas.contains(jToggleButtonO.getText())) {
+            jToggleButtonO.setBackground(juego(jToggleButtonO.getText()));
+        }
+    }//GEN-LAST:event_jToggleButtonOActionPerformed
+
+    private void jToggleButtonLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonLActionPerformed
+        if (jugando && !usadas.contains(jToggleButtonL.getText())) {
+            jToggleButtonL.setBackground(juego(jToggleButtonL.getText()));
+        }
+    }//GEN-LAST:event_jToggleButtonLActionPerformed
+
+    private void jToggleButtonCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonCActionPerformed
+        if (jugando && !usadas.contains(jToggleButtonC.getText())) {
+            jToggleButtonC.setBackground(juego(jToggleButtonC.getText()));
+        }
+    }//GEN-LAST:event_jToggleButtonCActionPerformed
+
+    private void jToggleButtonDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonDActionPerformed
+        if (jugando && !usadas.contains(jToggleButtonD.getText())) {
+            jToggleButtonD.setBackground(juego(jToggleButtonD.getText()));
+        }
+    }//GEN-LAST:event_jToggleButtonDActionPerformed
+
+    private void jToggleButtonEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonEActionPerformed
+        if (jugando && !usadas.contains(jToggleButtonE.getText())) {
+            jToggleButtonE.setBackground(juego(jToggleButtonE.getText()));
+        }
+    }//GEN-LAST:event_jToggleButtonEActionPerformed
+
+    private void jToggleButtonFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonFActionPerformed
+        if (jugando && !usadas.contains(jToggleButtonF.getText())) {
+            jToggleButtonF.setBackground(juego(jToggleButtonF.getText()));
+        }
+    }//GEN-LAST:event_jToggleButtonFActionPerformed
+
+    private void jToggleButtonGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonGActionPerformed
+        if (jugando && !usadas.contains(jToggleButtonG.getText())) {
+            jToggleButtonG.setBackground(juego(jToggleButtonG.getText()));
+        }
+    }//GEN-LAST:event_jToggleButtonGActionPerformed
+
+    private void jToggleButtonIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonIActionPerformed
+       if (jugando && !usadas.contains(jToggleButtonI.getText())) {
+            jToggleButtonI.setBackground(juego(jToggleButtonI.getText()));
+        }
+    }//GEN-LAST:event_jToggleButtonIActionPerformed
+
+    private void jToggleButtonJActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonJActionPerformed
+        if (jugando && !usadas.contains(jToggleButtonJ.getText())) {
+            jToggleButtonJ.setBackground(juego(jToggleButtonJ.getText()));
+        }
+    }//GEN-LAST:event_jToggleButtonJActionPerformed
+
+    private void jToggleButtonKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonKActionPerformed
+        if (jugando && !usadas.contains(jToggleButtonK.getText())) {
+            jToggleButtonK.setBackground(juego(jToggleButtonK.getText()));
+        }
+    }//GEN-LAST:event_jToggleButtonKActionPerformed
+
+    private void jToggleButtonMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonMActionPerformed
+        if (jugando && !usadas.contains(jToggleButtonM.getText())) {
+            jToggleButtonM.setBackground(juego(jToggleButtonM.getText()));
+        }
+    }//GEN-LAST:event_jToggleButtonMActionPerformed
+
+    private void jToggleButtonNYActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonNYActionPerformed
+        if (jugando && !usadas.contains("Ñ")) {
+            jToggleButtonNY.setBackground(juego("Ñ"));
+        }
+    }//GEN-LAST:event_jToggleButtonNYActionPerformed
+
+    private void jToggleButtonPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonPActionPerformed
+        if (jugando && !usadas.contains(jToggleButtonP.getText())) {
+            jToggleButtonP.setBackground(juego(jToggleButtonP.getText()));
+        }
+    }//GEN-LAST:event_jToggleButtonPActionPerformed
+
+    private void jToggleButtonRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonRActionPerformed
+        if (jugando && !usadas.contains(jToggleButtonR.getText())) {
+            jToggleButtonR.setBackground(juego(jToggleButtonR.getText()));
+        }
+    }//GEN-LAST:event_jToggleButtonRActionPerformed
+
+    private void jToggleButtonTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonTActionPerformed
+        if (jugando && !usadas.contains(jToggleButtonT.getText())) {
+            jToggleButtonT.setBackground(juego(jToggleButtonT.getText()));
+        }
+    }//GEN-LAST:event_jToggleButtonTActionPerformed
+
+    private void jToggleButtonUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonUActionPerformed
+        if (jugando && !usadas.contains(jToggleButtonU.getText())) {
+            jToggleButtonU.setBackground(juego(jToggleButtonU.getText()));
+        }
+    }//GEN-LAST:event_jToggleButtonUActionPerformed
+
+    private void jToggleButtonVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonVActionPerformed
+        if (jugando && !usadas.contains(jToggleButtonV.getText())) {
+            jToggleButtonV.setBackground(juego(jToggleButtonV.getText()));
+        }
+    }//GEN-LAST:event_jToggleButtonVActionPerformed
+
+    private void jToggleButtonWActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonWActionPerformed
+        if (jugando && !usadas.contains(jToggleButtonW.getText())) {
+            jToggleButtonW.setBackground(juego(jToggleButtonW.getText()));
+        }
+    }//GEN-LAST:event_jToggleButtonWActionPerformed
+
+    private void jToggleButtonXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonXActionPerformed
+        if (jugando && !usadas.contains(jToggleButtonX.getText())) {
+            jToggleButtonX.setBackground(juego(jToggleButtonX.getText()));
+        }
+    }//GEN-LAST:event_jToggleButtonXActionPerformed
+
+    private void jToggleButtonZActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonZActionPerformed
+        if (jugando && !usadas.contains(jToggleButtonZ.getText())) {
+            jToggleButtonZ.setBackground(juego(jToggleButtonZ.getText()));
+        }
+    }//GEN-LAST:event_jToggleButtonZActionPerformed
+
+    private void jButtonNuevaPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNuevaPartidaActionPerformed
+        fallos = 0;
+        palabraAdivinar = "";
+        palabraOculta = "";
+        usadas = "";
+        jugando = false;
+        terminar = false;
+        jLabelImagen.setIcon(null);
+        jToggleButtonA.setBackground( new java.awt.Color(221,221,221));
+        jToggleButtonB.setBackground( new java.awt.Color(221,221,221));
+        jToggleButtonC.setBackground( new java.awt.Color(221,221,221));
+        jToggleButtonD.setBackground( new java.awt.Color(221,221,221));
+        jToggleButtonE.setBackground( new java.awt.Color(221,221,221));
+        jToggleButtonF.setBackground( new java.awt.Color(221,221,221));
+        jToggleButtonG.setBackground( new java.awt.Color(221,221,221));
+        jToggleButtonH.setBackground( new java.awt.Color(221,221,221));
+        jToggleButtonI.setBackground( new java.awt.Color(221,221,221));
+        jToggleButtonJ.setBackground( new java.awt.Color(221,221,221));
+        jToggleButtonK.setBackground( new java.awt.Color(221,221,221));
+        jToggleButtonL.setBackground( new java.awt.Color(221,221,221));
+        jToggleButtonM.setBackground( new java.awt.Color(221,221,221));
+        jToggleButtonN.setBackground( new java.awt.Color(221,221,221));
+        jToggleButtonNY.setBackground( new java.awt.Color(221,221,221));
+        jToggleButtonO.setBackground( new java.awt.Color(221,221,221));
+        jToggleButtonP.setBackground( new java.awt.Color(221,221,221));
+        jToggleButtonQ.setBackground( new java.awt.Color(221,221,221));
+        jToggleButtonR.setBackground( new java.awt.Color(221,221,221));
+        jToggleButtonS.setBackground( new java.awt.Color(221,221,221));
+        jToggleButtonT.setBackground( new java.awt.Color(221,221,221));
+        jToggleButtonU.setBackground( new java.awt.Color(221,221,221));
+        jToggleButtonV.setBackground( new java.awt.Color(221,221,221));
+        jToggleButtonW.setBackground( new java.awt.Color(221,221,221));
+        jToggleButtonX.setBackground( new java.awt.Color(221,221,221));
+        jToggleButtonY.setBackground( new java.awt.Color(221,221,221));
+        jToggleButtonZ.setBackground( new java.awt.Color(221,221,221));
+        jButtonAsignarPalabra.setEnabled(true);
+        jButtonPalabraAleatoria.setEnabled(true);
+    }//GEN-LAST:event_jButtonNuevaPartidaActionPerformed
+    
+    private void asignarPalabra(String palabra){
+        if(jugando){
+            palabraAdivinar = palabra;
+            for (int i = 0; i < palabraAdivinar.length(); i++) {
+                palabraOculta+="_";
+            }
+            mostrarPalabra();
+            jButtonAsignarPalabra.setEnabled(false);
+            jButtonPalabraAleatoria.setEnabled(false);
+        }
+    }
+    
+    private Color juego(String letra){
+        boolean esta = false;
+        if (palabraAdivinar.contains(letra)) {
+            char[] arrayOculto = palabraOculta.toCharArray();
+            for (int i = 0; i < palabraAdivinar.length(); i++) {
+                if (letra.charAt(0) ==palabraAdivinar.charAt(i)) {
+                    arrayOculto[i] = letra.charAt(0); 
+                }
+            }
+            esta = true;
+            palabraOculta = new String(arrayOculto);
+            mostrarPalabra();
+            if (!palabraOculta.contains("_")) {
+                terminar = true;
+            }
+        }else{
+            fallos++;
+            usadas+=letra;
+        }
+        switch(fallos){
+            //jLabelImagen.setIcon(new ImageIcon(getClass().getResource("../img/ahorcado1.jpg")));
+            case 1:
+                jLabelImagen.setIcon(new ImageIcon(getClass().getResource("../img/ahorcado1.jpg")));
+                jLabelErroresLog.setText("Llevas "+fallos+" fallos.");
+                break;
+            case 2:
+                jLabelImagen.setIcon(new ImageIcon(getClass().getResource("../img/ahorcado2.jpg")));
+                jLabelErroresLog.setText("Llevas "+fallos+" fallos.");
+                break;
+            case 3:
+                jLabelImagen.setIcon(new ImageIcon(getClass().getResource("../img/ahorcado3.jpg")));
+                jLabelErroresLog.setText("Llevas "+fallos+" fallos.");
+                break;
+            case 4:
+                jLabelImagen.setIcon(new ImageIcon(getClass().getResource("../img/ahorcado4.jpg")));
+                jLabelErroresLog.setText("Llevas "+fallos+" fallos.");
+                break;
+            case 5:
+                jLabelImagen.setIcon(new ImageIcon(getClass().getResource("../img/ahorcado5.jpg")));
+                jLabelErroresLog.setText("Llevas "+fallos+" fallos.");
+                break;
+            case 6:
+                jLabelImagen.setIcon(new ImageIcon(getClass().getResource("../img/ahorcado6.jpg")));
+                jLabelErroresLog.setText("Llevas "+fallos+" fallos.");
+                terminar = true;
+                jugando = false;
+                break;
+        }
+        usadas += letra;
+        if (terminar) {
+            if (!palabraOculta.contains("_")) {
+                jugando = true;
+                jLabelErroresLog.setText("Has ganado");
+                return Color.green;
+            }else{
+                jLabelErroresLog.setText("Has perdido");
+                return Color.red;
+            }
+            //terminar programa
+        }else if (esta) {
+            return Color.green;
+        }else{
+            return Color.red;
+        }   
+    }
+    
+    private void mostrarPalabra(){
+        String mostrar = "";
+        for (int i = 0; i < palabraOculta.length(); i++) {
+            mostrar+=palabraOculta.charAt(i)+" ";
+        }
+        jLabelPalabraOculta.setText(mostrar);
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -376,12 +794,18 @@ public class Ahorcado extends javax.swing.JFrame {
             }
         });
     }
-    private String palabraOcultaMostrar = "";
-    private char[] palabra;
+    private boolean terminar = false;
+    private boolean jugando = false;
+    private String usadas = "";
+    private char[] arrayPalabra;
+    private String palabraAdivinar;
+    private String palabraOculta = "";
     private int fallos = 0;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAsignarPalabra;
     private javax.swing.JButton jButtonNuevaPartida;
+    private javax.swing.JButton jButtonPalabraAleatoria;
+    private javax.swing.JLabel jLabelErroresLog;
     private javax.swing.JLabel jLabelImagen;
     private javax.swing.JLabel jLabelPalabraOculta;
     private javax.swing.JPasswordField jPasswordFieldPalabra;
