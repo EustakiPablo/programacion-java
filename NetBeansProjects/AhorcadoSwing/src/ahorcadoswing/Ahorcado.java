@@ -640,6 +640,8 @@ public class Ahorcado extends javax.swing.JFrame {
         palabraAdivinar = "";
         palabraOculta = "";
         usadas = "";
+        jPasswordFieldPalabra.setText("");
+        jLabelPalabraOculta.setText("");
         jugando = false;
         terminar = false;
         jLabelImagen.setIcon(null);
