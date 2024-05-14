@@ -642,6 +642,7 @@ public class Ahorcado extends javax.swing.JFrame {
         usadas = "";
         jPasswordFieldPalabra.setText("");
         jLabelPalabraOculta.setText("");
+        jLabelErroresLog.setText("");
         jugando = false;
         terminar = false;
         jLabelImagen.setIcon(null);
@@ -743,7 +744,7 @@ public class Ahorcado extends javax.swing.JFrame {
                 jLabelErroresLog.setText("Has ganado");
                 return Color.green;
             }else{
-                jLabelErroresLog.setText("Has perdido");
+                jLabelErroresLog.setText("Has perdido. La palabra era: "+palabraAdivinar);
                 return Color.red;
             }
             //terminar programa
