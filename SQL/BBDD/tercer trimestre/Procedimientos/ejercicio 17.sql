@@ -21,3 +21,24 @@ DELIMITER ;
 SET @a = valorProducto(2000,15);
 -- mostramos el valor
 SELECT @a;
+
+drop function if exists f_mayor;
+
+delimiter //
+create function f_mayor(
+  valor1 int,
+  valor2 int) 
+  returns VARCHAR(10)
+  deterministic
+begin 
+  if valor1>valor2 then
+    return CAST(valor1 AS char(10));
+  elseif valor2>valor1 then
+    return CAST(valor2 AS char(10));
+  else
+	return CONCAT(CAST(valor1 AS char(10)),",",CAST(valor2 AS char(10)));
+  end if;
+end //
+delimiter ;
+
+select f_mayor(50, 50);
