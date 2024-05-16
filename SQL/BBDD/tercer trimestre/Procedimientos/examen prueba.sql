@@ -326,17 +326,49 @@ CREATE TABLE valoresProductos(
 );
 INSERT INTO valoresProductos VALUES (2000,15,valorProducto(2000,15));
 
-/*delimiter //
-CREATE PROCEDURE potencia(IN base INT, IN exponente INT, OUT resultado INT)
+-- Ejercicio 19
+DROP FUNCTION IF EXISTS cantidadProductos;
+DELIMITER //
+CREATE FUNCTION cantidadProductos() RETURNS INT DETERMINISTIC
 BEGIN
-	-- Si el exponente vale 0 el resultado siempre es 1
-	IF exponente = 0 THEN
-		SET resultado = 1;
-	ELSE
-		-- Llamamos de nuevo al procedimiento restando uno al exponente
-		CALL potencia(base,exponente-1,resultado);
-        -- Asignamos el resultado
-		SET resultado = resultado*base;
-	END IF;
+	DECLARE cantidad INT;
+    SET cantidad = (SELECT COUNT(coste) FROM valoresProductos);
+    RETURN cantidad;
 END //
-delimiter ;*/
+DELIMITER ;
+SELECT cantidadProductos();
+
+-- Ejercicio 20
+DROP FUNCTION IF EXISTS buscarProducto;
+DELIMITER //
+CREATE FUNCTION buscarProducto(cost FLOAT) RETURNS INT DETERMINISTIC
+BEGIN
+	DECLARE cantidad INT;
+    SET cantidad = (SELECT precioFinal FROM valoresProductos WHERE coste=cost);
+    RETURN cantidad;
+END //
+DELIMITER ;
+SELECT buscarProducto(2000);
+
+-- Ejercicio 21
+DROP TABLE IF EXISTS historial_clientes;
+CREATE TABLE historial_clientes(
+	dni VARCHAR(10) PRIMARY KEY,
+    nombre VARCHAR(20),
+    apellido1 VARCHAR(20),
+    apellido2 VARCHAR(20),
+    telefono VARCHAR(9),
+    correo VARCHAR(40),
+    fecha DATE
+);
+
+DROP TRIGGER IF EXISTS before_clientes_update;
+DELIMITER //
+CREATE TRIGGER before_clientes_update BEFORE UPDATE ON cliente FOR EACH ROW
+	BEGIN
+		INSERT INTO historial_clientes VALUES (old.dni, old.nombre, old.apellido1, old.apellido2, old.telefono, old.correo, DATETIME());
+	END //
+DELIMITER ;
+UPDATE cliente SET dni="49154478M" WHERE nombre="Cristian";
+
+-- Ejercicio 22
