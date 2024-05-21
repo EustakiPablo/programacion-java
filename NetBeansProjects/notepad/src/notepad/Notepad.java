@@ -48,9 +48,14 @@ public class Notepad extends javax.swing.JFrame {
         jPopupMenu1 = new javax.swing.JPopupMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItemNegrita = new javax.swing.JMenuItem();
+        jMenuItem8 = new javax.swing.JMenuItem();
+        jComboBox1 = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextPaneTexto = new javax.swing.JTextPane();
+        jToolBar1 = new javax.swing.JToolBar();
+        jButton1 = new javax.swing.JButton();
+        jComboBoxFuentes = new javax.swing.JComboBox<>();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -66,6 +71,8 @@ public class Notepad extends javax.swing.JFrame {
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        jMenuItem9 = new javax.swing.JMenuItem();
+        jMenuItem10 = new javax.swing.JMenuItem();
 
         jMenuItem6.setText("jMenuItem6");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
@@ -83,12 +90,44 @@ public class Notepad extends javax.swing.JFrame {
         });
         jPopupMenu1.add(jMenuItemNegrita);
 
+        jMenuItem8.setText("jMenuItem8");
+        jPopupMenu1.add(jMenuItem8);
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jTextPaneTexto.setComponentPopupMenu(jPopupMenu1);
         jScrollPane1.setViewportView(jTextPaneTexto);
 
         jScrollPane2.setViewportView(jScrollPane1);
+
+        jToolBar1.setRollover(true);
+        jToolBar1.setRequestFocusEnabled(false);
+
+        jButton1.setText("Cambiar fuente");
+        jButton1.setFocusable(false);
+        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButton1);
+
+        jComboBoxFuentes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Serif", "SansSerif", "Monospaced", "Dialog", "DialogInput" }));
+        jComboBoxFuentes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxFuentesActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jComboBoxFuentes);
 
         jMenu1.setMnemonic('i');
         jMenu1.setText("File");
@@ -143,6 +182,13 @@ public class Notepad extends javax.swing.JFrame {
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Edit");
+
+        jMenuItem9.setText("Cambiar fuente");
+        jMenu2.add(jMenuItem9);
+
+        jMenuItem10.setText("jMenuItem10");
+        jMenu2.add(jMenuItem10);
+
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -151,15 +197,15 @@ public class Notepad extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 899, Short.MAX_VALUE))
+            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 1216, Short.MAX_VALUE)
+            .addComponent(jScrollPane2)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 741, Short.MAX_VALUE))
+                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 711, Short.MAX_VALUE))
         );
 
         pack();
@@ -213,6 +259,29 @@ public class Notepad extends javax.swing.JFrame {
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         guardar();
     }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+    private void cambiarFuente(){
+        String selectedFont = (String) jComboBoxFuentes.getSelectedItem();
+                StyledDocument doc = jTextPaneTexto.getStyledDocument();
+                int start = jTextPaneTexto.getSelectionStart();
+                int end = jTextPaneTexto.getSelectionEnd();
+
+                if (start != end && selectedFont != null) {
+                    Style style = jTextPaneTexto.addStyle("Font", null);
+                    StyleConstants.setFontFamily(style, selectedFont);
+                    doc.setCharacterAttributes(start, end - start, style, false);
+                }
+    }
+    private void jComboBoxFuentesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxFuentesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxFuentesActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        cambiarFuente();
+    }//GEN-LAST:event_jButton1ActionPerformed
     private void guardar(){
         JFileChooser fileChooser = new JFileChooser();
         int option = fileChooser.showSaveDialog(this);
@@ -288,18 +357,24 @@ public class Notepad extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBoxFuentes;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JMenuItem jMenuItemNegrita;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
@@ -309,5 +384,6 @@ public class Notepad extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JTextPane jTextPaneTexto;
+    private javax.swing.JToolBar jToolBar1;
     // End of variables declaration//GEN-END:variables
 }
