@@ -46,3 +46,38 @@ SELECT estrellas("https://instagram.com");
 
 
 -- SELECT estrellas FROM sitios WHERE url ="https://google.com";
+
+-- Función 2
+
+DROP FUNCTION IF EXISTS cantVisitias;
+DELIMITER //
+CREATE FUNCTION cantVisitias(num INT) RETURNS VARCHAR(20) DETERMINISTIC
+BEGIN 
+	DECLARE trafico VARCHAR(20);
+	IF (num < 20000000) THEN
+		SET trafico = "tráfico bajo";
+	ELSEIF (num < 40000000) THEN
+		SET trafico = "tráfico medio";
+	ELSE
+		SET trafico = "tráfico alto";
+    END IF;
+    RETURN trafico;
+END //
+DELIMITER ;
+
+SELECT cantVisitias(30000000);
+
+-- Función 3
+
+DROP FUNCTION IF EXISTS mayorTrafico;
+DELIMITER //
+CREATE FUNCTION mayorTrafico() RETURNS VARCHAR(20) READS SQL DATA
+BEGIN 
+	-- sitios
+    DECLARE devolver VARCHAR(100);
+    SET devolver = (SELECT url FROM sitios WHERE cantpaginas = (SELECT MAX(cantpaginas) FROM sitios));
+    RETURN devolver;
+END //
+DELIMITER ;
+
+SELECT mayorTrafico();
