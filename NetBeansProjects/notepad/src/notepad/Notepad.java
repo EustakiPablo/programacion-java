@@ -4,7 +4,20 @@
  */
 package notepad;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.Document;
 import javax.swing.text.EditorKit;
+import javax.swing.text.Style;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
+import javax.swing.text.rtf.RTFEditorKit;
 
 /**
  *
@@ -18,10 +31,11 @@ public class Notepad extends javax.swing.JFrame {
     public Notepad() {
         initComponents();
     }
+
     /*  DefaultEditorKit.
         Requisitos notepad
         
-    */
+     */
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -33,12 +47,14 @@ public class Notepad extends javax.swing.JFrame {
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
+        jMenuItemNegrita = new javax.swing.JMenuItem();
+        jScrollPane2 = new javax.swing.JScrollPane();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
+        jTextPaneTexto = new javax.swing.JTextPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         jMenuItem2 = new javax.swing.JMenuItem();
         jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
@@ -52,27 +68,47 @@ public class Notepad extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
 
         jMenuItem6.setText("jMenuItem6");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
         jPopupMenu1.add(jMenuItem6);
 
-        jMenuItem7.setText("jMenuItem7");
-        jPopupMenu1.add(jMenuItem7);
+        jMenuItemNegrita.setText("Negrita");
+        jMenuItemNegrita.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemNegritaActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(jMenuItemNegrita);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTextPane1.setComponentPopupMenu(jPopupMenu1);
-        jScrollPane1.setViewportView(jTextPane1);
+        jTextPaneTexto.setComponentPopupMenu(jPopupMenu1);
+        jScrollPane1.setViewportView(jTextPaneTexto);
+
+        jScrollPane2.setViewportView(jScrollPane1);
 
         jMenu1.setMnemonic('i');
         jMenu1.setText("File");
 
         jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        jMenuItem1.setText("jMenuItem1");
+        jMenuItem1.setText("Abrir");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);
             }
         });
         jMenu1.add(jMenuItem1);
+
+        jMenuItem7.setText("Guardar");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem7);
         jMenu1.add(jSeparator1);
 
         jMenuItem2.setText("jMenuItem2");
@@ -115,20 +151,107 @@ public class Notepad extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 899, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 741, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        
+        abrir();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+    private void abrir() {
+        JFileChooser fileChooser = new JFileChooser();
+        int option = fileChooser.showOpenDialog(this);
 
+        if (option == JFileChooser.APPROVE_OPTION) {
+            // Obtener el archivo seleccionado
+            java.io.File file = fileChooser.getSelectedFile();
+
+            try (FileInputStream in = new FileInputStream(file)) {
+                // Utilizar RTFEditorKit para leer el contenido como RTF
+                RTFEditorKit rtfEditorKit = new RTFEditorKit();
+                jTextPaneTexto.setEditorKit(rtfEditorKit);
+                Document doc = jTextPaneTexto.getDocument();
+                rtfEditorKit.read(in, doc, 0);
+            } catch (IOException | BadLocationException ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(this, "Failed to open file", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
+    private void jMenuItemNegritaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemNegritaActionPerformed
+        negrita();
+    }//GEN-LAST:event_jMenuItemNegritaActionPerformed
+    private void negrita() {
+        // Obtén el documento y la selección actual
+        StyledDocument doc = jTextPaneTexto.getStyledDocument();
+        int start = jTextPaneTexto.getSelectionStart();
+        int end = jTextPaneTexto.getSelectionEnd();
+        if (start == end) {
+            // No hay selección
+            return;
+        }
+        // Crear un estilo con negrita
+        Style style = jTextPaneTexto.addStyle("Bold", null);
+        StyleConstants.setBold(style, true);
+        // Aplicar el estilo a la selección
+        doc.setCharacterAttributes(start, end - start, style, false);
+    }
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        guardar();
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
+    private void guardar(){
+        JFileChooser fileChooser = new JFileChooser();
+        int option = fileChooser.showSaveDialog(this);
+        /*
+        if (option == JFileChooser.APPROVE_OPTION) {
+            // Obtener el archivo seleccionado
+            java.io.File file = fileChooser.getSelectedFile();
+            try (FileOutputStream out = new FileOutputStream(file)) {
+                // Utilizar RTFEditorKit para guardar el contenido como RTF
+                RTFEditorKit rtfEditorKit = new RTFEditorKit();
+                rtfEditorKit.write(out, jTextPaneTexto.getStyledDocument(), 0, jTextPaneTexto.getStyledDocument().getLength());
+                JOptionPane.showMessageDialog(this, "File saved successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(this, "Failed to save file", "Error", JOptionPane.ERROR_MESSAGE);
+            } catch (BadLocationException ex) {
+                Logger.getLogger(Notepad.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }*/
+        if (option == JFileChooser.APPROVE_OPTION) {
+            // Obtener el archivo seleccionado
+            java.io.File file = fileChooser.getSelectedFile();
+
+            // Asegurarse de que el archivo tenga la extensión .rtf
+            if (!file.getName().toLowerCase().endsWith(".rtf")) {
+                file = new java.io.File(file.getAbsolutePath() + ".rtf");
+            }
+
+            try (FileOutputStream out = new FileOutputStream(file)) {
+                // Utilizar RTFEditorKit para guardar el contenido como RTF
+                RTFEditorKit rtfEditorKit = new RTFEditorKit();
+                rtfEditorKit.write(out, jTextPaneTexto.getStyledDocument(), 0, jTextPaneTexto.getStyledDocument().getLength());
+                JOptionPane.showMessageDialog(this, "File saved successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+            } catch (IOException | BadLocationException ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(this, "Failed to save file", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -177,12 +300,14 @@ public class Notepad extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItemNegrita;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
-    private javax.swing.JTextPane jTextPane1;
+    private javax.swing.JTextPane jTextPaneTexto;
     // End of variables declaration//GEN-END:variables
 }
