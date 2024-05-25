@@ -4,16 +4,24 @@
  */
 package notepad;
 
+import java.awt.Color;
+import java.awt.GraphicsEnvironment;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JColorChooser;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.JTextPane;
 import javax.swing.text.BadLocationException;
+import javax.swing.text.DefaultStyledDocument;
 import javax.swing.text.Document;
 import javax.swing.text.EditorKit;
+import javax.swing.text.MutableAttributeSet;
+import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
@@ -46,35 +54,59 @@ public class Notepad extends javax.swing.JFrame {
     private void initComponents() {
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItemNegrita = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jSeparator3 = new javax.swing.JPopupMenu.Separator();
+        jMenuItemNegrita = new javax.swing.JMenuItem();
+        jMenuItem14 = new javax.swing.JMenuItem();
+        jMenuItem15 = new javax.swing.JMenuItem();
         jScrollPane2 = new javax.swing.JScrollPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextPaneTexto = new javax.swing.JTextPane();
         jToolBar1 = new javax.swing.JToolBar();
-        jButton1 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         jComboBoxFuentes = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        jComboBoxTamanyoLetra = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
+        jButton10 = new javax.swing.JButton();
+        jButton11 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        jMenuItem12 = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem11 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
-        jRadioButtonMenuItem1 = new javax.swing.JRadioButtonMenuItem();
-        jRadioButtonMenuItem2 = new javax.swing.JRadioButtonMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem13 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem9 = new javax.swing.JMenuItem();
         jMenuItem10 = new javax.swing.JMenuItem();
+        jMenuItem16 = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
 
-        jMenuItem6.setText("jMenuItem6");
+        jMenuItem8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cortar.png"))); // NOI18N
+        jMenuItem8.setText("Cortar");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(jMenuItem8);
+
+        jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/copiar.png"))); // NOI18N
+        jMenuItem6.setText("Copiar");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem6ActionPerformed(evt);
@@ -82,6 +114,17 @@ public class Notepad extends javax.swing.JFrame {
         });
         jPopupMenu1.add(jMenuItem6);
 
+        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/pegar.png"))); // NOI18N
+        jMenuItem3.setText("Pegar");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(jMenuItem3);
+        jPopupMenu1.add(jSeparator3);
+
+        jMenuItemNegrita.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/negrita.png"))); // NOI18N
         jMenuItemNegrita.setText("Negrita");
         jMenuItemNegrita.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -90,18 +133,27 @@ public class Notepad extends javax.swing.JFrame {
         });
         jPopupMenu1.add(jMenuItemNegrita);
 
-        jMenuItem8.setText("jMenuItem8");
-        jPopupMenu1.add(jMenuItem8);
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/italica.png"))); // NOI18N
+        jMenuItem14.setText("Cursiva");
+        jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                jMenuItem14ActionPerformed(evt);
             }
         });
+        jPopupMenu1.add(jMenuItem14);
+
+        jMenuItem15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/subrayado.png"))); // NOI18N
+        jMenuItem15.setText("Subrayado");
+        jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem15ActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(jMenuItem15);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jTextPaneTexto.setFont(new java.awt.Font("Serif", 0, 12)); // NOI18N
         jTextPaneTexto.setComponentPopupMenu(jPopupMenu1);
         jScrollPane1.setViewportView(jTextPaneTexto);
 
@@ -110,7 +162,63 @@ public class Notepad extends javax.swing.JFrame {
         jToolBar1.setRollover(true);
         jToolBar1.setRequestFocusEnabled(false);
 
-        jButton1.setText("Cambiar fuente");
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/nuevo documento.png"))); // NOI18N
+        jButton5.setText("Nuevo documento");
+        jButton5.setFocusable(false);
+        jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButton5);
+
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/abrir.png"))); // NOI18N
+        jButton4.setText("Abrir");
+        jButton4.setFocusable(false);
+        jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(jButton4);
+
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/guardar.png"))); // NOI18N
+        jButton2.setText("Guardar");
+        jButton2.setFocusable(false);
+        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(jButton2);
+
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/guardar como.png"))); // NOI18N
+        jButton3.setText("Guardar como...");
+        jButton3.setFocusable(false);
+        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(jButton3);
+
+        jLabel1.setText("Cambiar fuente");
+        jToolBar1.add(jLabel1);
+
+        jComboBoxFuentes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Serif", "SansSerif", "Monospaced", "Dialog", "DialogInput" }));
+        jComboBoxFuentes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxFuentesActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jComboBoxFuentes);
+
+        jLabel2.setText("Cambiar tamaño");
+        jToolBar1.add(jLabel2);
+
+        jComboBoxTamanyoLetra.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "12", "14", "16", "18", "20", "22", "24" }));
+        jComboBoxTamanyoLetra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxTamanyoLetraActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jComboBoxTamanyoLetra);
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/colores.png"))); // NOI18N
+        jButton1.setText("Cambiar color");
         jButton1.setFocusable(false);
         jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -121,18 +229,86 @@ public class Notepad extends javax.swing.JFrame {
         });
         jToolBar1.add(jButton1);
 
-        jComboBoxFuentes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Serif", "SansSerif", "Monospaced", "Dialog", "DialogInput" }));
-        jComboBoxFuentes.addActionListener(new java.awt.event.ActionListener() {
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/negrita.png"))); // NOI18N
+        jButton6.setFocusable(false);
+        jButton6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton6.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxFuentesActionPerformed(evt);
+                jButton6ActionPerformed(evt);
             }
         });
-        jToolBar1.add(jComboBoxFuentes);
+        jToolBar1.add(jButton6);
+
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/italica.png"))); // NOI18N
+        jButton7.setFocusable(false);
+        jButton7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton7.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButton7);
+
+        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/subrayado.png"))); // NOI18N
+        jButton8.setFocusable(false);
+        jButton8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton8.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButton8);
+
+        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cortar.png"))); // NOI18N
+        jButton9.setFocusable(false);
+        jButton9.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton9.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButton9);
+
+        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/copiar.png"))); // NOI18N
+        jButton10.setFocusable(false);
+        jButton10.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton10.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButton10);
+
+        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/pegar.png"))); // NOI18N
+        jButton11.setFocusable(false);
+        jButton11.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton11.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButton11);
 
         jMenu1.setMnemonic('i');
         jMenu1.setText("File");
 
+        jMenuItem12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/nuevo documento.png"))); // NOI18N
+        jMenuItem12.setText("Nuevo documento");
+        jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem12ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem12);
+
         jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/abrir.png"))); // NOI18N
         jMenuItem1.setText("Abrir");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -141,7 +317,18 @@ public class Notepad extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem1);
 
-        jMenuItem7.setText("Guardar");
+        jMenuItem11.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jMenuItem11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/guardar.png"))); // NOI18N
+        jMenuItem11.setText("Guardar");
+        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem11ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem11);
+
+        jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/guardar como.png"))); // NOI18N
+        jMenuItem7.setText("Guardar Como");
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem7ActionPerformed(evt);
@@ -150,46 +337,55 @@ public class Notepad extends javax.swing.JFrame {
         jMenu1.add(jMenuItem7);
         jMenu1.add(jSeparator1);
 
-        jMenuItem2.setText("jMenuItem2");
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ayuda.png"))); // NOI18N
+        jMenuItem2.setText("Ayuda");
         jMenu1.add(jMenuItem2);
-
-        jCheckBoxMenuItem1.setSelected(true);
-        jCheckBoxMenuItem1.setText("jCheckBoxMenuItem1");
-        jMenu1.add(jCheckBoxMenuItem1);
         jMenu1.add(jSeparator2);
 
-        jRadioButtonMenuItem1.setSelected(true);
-        jRadioButtonMenuItem1.setText("jRadioButtonMenuItem1");
-        jMenu1.add(jRadioButtonMenuItem1);
-
-        jRadioButtonMenuItem2.setSelected(true);
-        jRadioButtonMenuItem2.setText("jRadioButtonMenuItem2");
-        jMenu1.add(jRadioButtonMenuItem2);
-
-        jMenuItem3.setText("jMenuItem3");
-        jMenu1.add(jMenuItem3);
-
-        jMenu4.setText("jMenu4");
-
-        jMenuItem4.setText("jMenuItem4");
-        jMenu4.add(jMenuItem4);
-
-        jMenuItem5.setText("jMenuItem5");
-        jMenu4.add(jMenuItem5);
-
-        jMenu1.add(jMenu4);
+        jMenuItem13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/salir.png"))); // NOI18N
+        jMenuItem13.setText("Salir");
+        jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem13ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem13);
 
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Edit");
 
-        jMenuItem9.setText("Cambiar fuente");
+        jMenuItem9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/negrita.png"))); // NOI18N
+        jMenuItem9.setText("Texto en negrita");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem9);
 
-        jMenuItem10.setText("jMenuItem10");
+        jMenuItem10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/italica.png"))); // NOI18N
+        jMenuItem10.setText("Texto en cursiva");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem10);
 
+        jMenuItem16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/subrayado.png"))); // NOI18N
+        jMenuItem16.setText("Subrayar texto");
+        jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem16ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem16);
+
         jMenuBar1.add(jMenu2);
+
+        jMenu3.setText("Ayuda");
+        jMenuBar1.add(jMenu3);
 
         setJMenuBar(jMenuBar1);
 
@@ -205,17 +401,21 @@ public class Notepad extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 711, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 689, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    private String[] fuentes() {
+        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        String[] fontNames = ge.getAvailableFontFamilyNames();
+        return fontNames;
+    }
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         abrir();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
     private void abrir() {
-        JFileChooser fileChooser = new JFileChooser();
+        /*JFileChooser fileChooser = new JFileChooser();
         int option = fileChooser.showOpenDialog(this);
 
         if (option == JFileChooser.APPROVE_OPTION) {
@@ -232,57 +432,185 @@ public class Notepad extends javax.swing.JFrame {
                 ex.printStackTrace();
                 JOptionPane.showMessageDialog(this, "Failed to open file", "Error", JOptionPane.ERROR_MESSAGE);
             }
+        }*/
+        JFileChooser fileChooser = new JFileChooser();
+        int option = fileChooser.showOpenDialog(this);
+
+        if (option == JFileChooser.APPROVE_OPTION) {
+            File file = fileChooser.getSelectedFile();
+            currentFile = file; // Guardar la referencia al archivo abierto
+
+            try (FileInputStream in = new FileInputStream(file)) {
+                RTFEditorKit rtfEditorKit = new RTFEditorKit();
+                jTextPaneTexto.setEditorKit(rtfEditorKit);
+                Document doc = jTextPaneTexto.getDocument();
+                rtfEditorKit.read(in, doc, 0);
+                //JOptionPane.showMessageDialog(this, "File opened successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+            } catch (IOException | BadLocationException ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(this, "Error al abrir el archivo", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }
     private void jMenuItemNegritaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemNegritaActionPerformed
         negrita();
     }//GEN-LAST:event_jMenuItemNegritaActionPerformed
     private void negrita() {
-        // Obtén el documento y la selección actual
         StyledDocument doc = jTextPaneTexto.getStyledDocument();
         int start = jTextPaneTexto.getSelectionStart();
         int end = jTextPaneTexto.getSelectionEnd();
-        if (start == end) {
-            // No hay selección
-            return;
+
+        if (start != end) {
+            MutableAttributeSet attrs = new SimpleAttributeSet(doc.getCharacterElement(start).getAttributes());
+            boolean isBold = StyleConstants.isBold(attrs);
+            StyleConstants.setBold(attrs, !isBold);
+            doc.setCharacterAttributes(start, end - start, attrs, false);
         }
-        // Crear un estilo con negrita
-        Style style = jTextPaneTexto.addStyle("Bold", null);
-        StyleConstants.setBold(style, true);
-        // Aplicar el estilo a la selección
-        doc.setCharacterAttributes(start, end - start, style, false);
     }
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-        // TODO add your handling code here:
+        jTextPaneTexto.copy();
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-        guardar();
+        guardarComo();
     }//GEN-LAST:event_jMenuItem7ActionPerformed
-
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
-    private void cambiarFuente(){
+    private void cambiarFuente(Notepad textPane, String fuente) {
         String selectedFont = (String) jComboBoxFuentes.getSelectedItem();
-                StyledDocument doc = jTextPaneTexto.getStyledDocument();
-                int start = jTextPaneTexto.getSelectionStart();
-                int end = jTextPaneTexto.getSelectionEnd();
+        StyledDocument doc = jTextPaneTexto.getStyledDocument();
+        int start = jTextPaneTexto.getSelectionStart();
+        int end = jTextPaneTexto.getSelectionEnd();
 
-                if (start != end && selectedFont != null) {
-                    Style style = jTextPaneTexto.addStyle("Font", null);
-                    StyleConstants.setFontFamily(style, selectedFont);
-                    doc.setCharacterAttributes(start, end - start, style, false);
-                }
+        if (start != end && selectedFont != null) {
+            Style style = jTextPaneTexto.addStyle("Font", null);
+            StyleConstants.setFontFamily(style, selectedFont);
+            doc.setCharacterAttributes(start, end - start, style, false);
+        }
     }
     private void jComboBoxFuentesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxFuentesActionPerformed
-        // TODO add your handling code here:
+        String selectedSize = (String) jComboBoxFuentes.getSelectedItem();
+        if (selectedSize != null) {
+            cambiarFuente(this, selectedSize);
+        }
     }//GEN-LAST:event_jComboBoxFuentesActionPerformed
 
+    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+        guardar();
+    }//GEN-LAST:event_jMenuItem11ActionPerformed
+
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        jTextPaneTexto.cut();
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
+    private void italica() {
+        StyledDocument doc = jTextPaneTexto.getStyledDocument();
+        int start = jTextPaneTexto.getSelectionStart();
+        int end = jTextPaneTexto.getSelectionEnd();
+
+        if (start != end) {
+            MutableAttributeSet attrs = new SimpleAttributeSet(doc.getCharacterElement(start).getAttributes());
+            StyleConstants.setItalic(attrs, !StyleConstants.isItalic(attrs));
+            doc.setCharacterAttributes(start, end - start, attrs, false);
+        }
+    }
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        jTextPaneTexto.paste();
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
+        italica();
+    }//GEN-LAST:event_jMenuItem14ActionPerformed
+
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+        italica();
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
+
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+        negrita();
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
+
+    private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
+        subrayar();
+    }//GEN-LAST:event_jMenuItem16ActionPerformed
+
+    private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
+        subrayar();
+    }//GEN-LAST:event_jMenuItem15ActionPerformed
+
+    private void jComboBoxTamanyoLetraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxTamanyoLetraActionPerformed
+        String selectedSize = (String) jComboBoxTamanyoLetra.getSelectedItem();
+        if (selectedSize != null) {
+            aplicarTamanyo(this, Integer.parseInt(selectedSize));
+        }
+    }//GEN-LAST:event_jComboBoxTamanyoLetraActionPerformed
+
+    private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
+        jTextPaneTexto.setDocument(new DefaultStyledDocument());
+        currentFile = null;
+    }//GEN-LAST:event_jMenuItem12ActionPerformed
+
+    private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jMenuItem13ActionPerformed
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        cambiarFuente();
+        Color color = JColorChooser.showDialog(this, "Choose Text Color", jTextPaneTexto.getForeground());
+        if (color != null) {
+            colorTexto(this, color);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
-    private void guardar(){
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        jTextPaneTexto.setDocument(new DefaultStyledDocument());
+        currentFile = null;
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        negrita();
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        italica();
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        subrayar();
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        jTextPaneTexto.cut();
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        jTextPaneTexto.copy();
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        jTextPaneTexto.paste();
+    }//GEN-LAST:event_jButton11ActionPerformed
+    private void aplicarTamanyo(Notepad textPane, int fontSize) {
+        StyledDocument doc = jTextPaneTexto.getStyledDocument();
+        int start = jTextPaneTexto.getSelectionStart();
+        int end = jTextPaneTexto.getSelectionEnd();
+
+        if (start != end) {
+            MutableAttributeSet attrs = new SimpleAttributeSet(doc.getCharacterElement(start).getAttributes());
+            StyleConstants.setFontSize(attrs, fontSize);
+            doc.setCharacterAttributes(start, end - start, attrs, false);
+        }
+    }
+
+    private void colorTexto(Notepad textPane, Color color) {
+        StyledDocument doc = jTextPaneTexto.getStyledDocument();
+        int start = jTextPaneTexto.getSelectionStart();
+        int end = jTextPaneTexto.getSelectionEnd();
+
+        if (start != end) {
+            MutableAttributeSet attrs = new SimpleAttributeSet(doc.getCharacterElement(start).getAttributes());
+            StyleConstants.setForeground(attrs, color);
+            doc.setCharacterAttributes(start, end - start, attrs, false);
+        }
+    }
+
+    private void guardarComo() {
         JFileChooser fileChooser = new JFileChooser();
         int option = fileChooser.showSaveDialog(this);
         /*
@@ -314,13 +642,65 @@ public class Notepad extends javax.swing.JFrame {
                 // Utilizar RTFEditorKit para guardar el contenido como RTF
                 RTFEditorKit rtfEditorKit = new RTFEditorKit();
                 rtfEditorKit.write(out, jTextPaneTexto.getStyledDocument(), 0, jTextPaneTexto.getStyledDocument().getLength());
-                JOptionPane.showMessageDialog(this, "File saved successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Funca bien", "Bien", JOptionPane.INFORMATION_MESSAGE);
             } catch (IOException | BadLocationException ex) {
                 ex.printStackTrace();
-                JOptionPane.showMessageDialog(this, "Failed to save file", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Error en guardar como", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
     }
+
+    private void guardar() {
+        if (currentFile != null) {
+            try (FileOutputStream out = new FileOutputStream(currentFile)) {
+                RTFEditorKit rtfEditorKit = new RTFEditorKit();
+                rtfEditorKit.write(out, jTextPaneTexto.getStyledDocument(), 0, jTextPaneTexto.getStyledDocument().getLength());
+                JOptionPane.showMessageDialog(this, "Guardao", "Bien", JOptionPane.INFORMATION_MESSAGE);
+            } catch (IOException | BadLocationException ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(this, "Algo ha fallado guardando el archivo", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JFileChooser fileChooser = new JFileChooser();
+            int option = fileChooser.showSaveDialog(this);
+
+            if (option == JFileChooser.APPROVE_OPTION) {
+                // Obtener el archivo seleccionado
+                java.io.File file = fileChooser.getSelectedFile();
+
+                // Asegurarse de que el archivo tenga la extensión .rtf
+                if (!file.getName().toLowerCase().endsWith(".rtf")) {
+                    file = new java.io.File(file.getAbsolutePath() + ".rtf");
+                }
+
+                try (FileOutputStream out = new FileOutputStream(file)) {
+                    // Utilizar RTFEditorKit para guardar el contenido como RTF
+                    RTFEditorKit rtfEditorKit = new RTFEditorKit();
+                    rtfEditorKit.write(out, jTextPaneTexto.getStyledDocument(), 0, jTextPaneTexto.getStyledDocument().getLength());
+                    JOptionPane.showMessageDialog(this, "Guardado!", "Funca", JOptionPane.INFORMATION_MESSAGE);
+                    File file2 = fileChooser.getSelectedFile();
+                    currentFile = file2;
+                } catch (IOException | BadLocationException ex) {
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(this, "Pos nos cagamos", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        }
+    }
+
+    private void subrayar() {
+        StyledDocument doc = jTextPaneTexto.getStyledDocument();
+        int start = jTextPaneTexto.getSelectionStart();
+        int end = jTextPaneTexto.getSelectionEnd();
+
+        if (start != end) {
+            MutableAttributeSet attrs = new SimpleAttributeSet(doc.getCharacterElement(start).getAttributes());
+            boolean isUnderlined = StyleConstants.isUnderline(attrs);
+            StyleConstants.setUnderline(attrs, !isUnderlined);
+            doc.setCharacterAttributes(start, end - start, attrs, false);
+        }
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -355,34 +735,48 @@ public class Notepad extends javax.swing.JFrame {
             }
         });
     }
-
+    private File currentFile;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JComboBox<String> jComboBoxFuentes;
+    private javax.swing.JComboBox<String> jComboBoxTamanyoLetra;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
+    private javax.swing.JMenuItem jMenuItem11;
+    private javax.swing.JMenuItem jMenuItem12;
+    private javax.swing.JMenuItem jMenuItem13;
+    private javax.swing.JMenuItem jMenuItem14;
+    private javax.swing.JMenuItem jMenuItem15;
+    private javax.swing.JMenuItem jMenuItem16;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JMenuItem jMenuItemNegrita;
     private javax.swing.JPopupMenu jPopupMenu1;
-    private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
-    private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
+    private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JTextPane jTextPaneTexto;
     private javax.swing.JToolBar jToolBar1;
     // End of variables declaration//GEN-END:variables
