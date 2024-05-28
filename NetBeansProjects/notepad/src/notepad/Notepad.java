@@ -153,9 +153,15 @@ public class Notepad extends javax.swing.JFrame {
         jPopupMenu1.add(jMenuItem15);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Notepad");
+
+        jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         jTextPaneTexto.setFont(new java.awt.Font("Serif", 0, 12)); // NOI18N
         jTextPaneTexto.setComponentPopupMenu(jPopupMenu1);
+        jTextPaneTexto.setPreferredSize(new java.awt.Dimension(62, 20));
         jScrollPane1.setViewportView(jTextPaneTexto);
 
         jScrollPane2.setViewportView(jScrollPane1);

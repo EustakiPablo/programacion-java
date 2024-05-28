@@ -185,3 +185,62 @@ BEGIN
 END //
 DELIMITER ;
 CALL burbujaAgain(5,5,2,4);
+
+
+-- Ejercicio 9
+
+DROP PROCEDURE IF EXISTS sumaImpares;
+DELIMITER //
+CREATE PROCEDURE sumaImpares(IN num1 INT, IN num2 INT)
+BEGIN
+	DECLARE numero1 INT;
+    DECLARE numero2 INT;
+    DECLARE resultado INT DEFAULT 0;
+	IF (num1<num2) THEN
+		SET numero1 = num2;
+        SET numero2 = num1;
+	ELSE
+		SET numero1 = num1;
+        SET numero2 = num2;
+    END IF;
+    
+    WHILE numero1<numero2 DO
+		IF !(numero1%2=0 AND numero2%2=0) THEN
+			SET resultado = resultado+numero1+numero2;
+        END IF;
+    END WHILE;
+    SELECT resultado;
+END //
+DELIMITER ;
+
+CALL sumaImpares(10, 11);
+
+-- Ejercicio 11
+DROP PROCEDURE IF EXISTS primos;
+DELIMITER //
+CREATE PROCEDURE primos(IN num INT, OUT primos LONGTEXT)
+BEGIN
+	DECLARE primero INT DEFAULT 1;
+    DECLARE cadena LONGTEXT DEFAULT "";
+    DECLARE acumulador INT;
+    DECLARE contador INT;
+    WHILE primero <= num DO
+		SET acumulador = 1;
+        SET contador = 0;
+		WHILE acumulador <= primero DO
+			IF (primero % acumulador = 0) THEN
+				SET contador = contador+1;
+            END IF;
+            SET acumulador = acumulador+1;
+        END WHILE;
+        IF contador <=2 THEN
+			SET cadena = CONCAT(cadena,CAST(primero AS CHAR(10)),", ");
+		END IF;
+        SET primero = primero+1;
+    END WHILE;
+    SET primos = SUBSTR(cadena,1,length(cadena)-2);
+END //
+DELIMITER ;
+SET @a = "";
+CALL primos(20,@a);
+SELECT @a;
