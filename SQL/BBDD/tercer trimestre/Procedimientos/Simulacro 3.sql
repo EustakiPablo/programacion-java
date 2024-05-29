@@ -244,3 +244,121 @@ DELIMITER ;
 SET @a = "";
 CALL primos(20,@a);
 SELECT @a;
+
+-- Ejercicio 12
+DROP PROCEDURE IF EXISTS operacion;
+DELIMITER //
+CREATE PROCEDURE operacion()
+BEGIN
+	DECLARE resulado FLOAT;
+    SET resulado = SQRT(5+POW(2,3)-7.456);
+    SELECT resulado;
+END //
+DELIMITER ;
+
+CALL operacion();
+
+-- Ejercicio 13
+DROP PROCEDURE IF EXISTS tablasPotencias;
+DELIMITER //
+CREATE PROCEDURE tablasPotencias(IN num INT)
+BEGIN
+	DECLARE contador INT DEFAULT 0;
+    DECLARE cadena VARCHAR(255);
+    DROP TEMPORARY TABLE IF EXISTS tablapotencias;
+    CREATE TEMPORARY TABLE tablapotencias(
+		numeros VARCHAR(255)
+    );
+    WHILE contador <= 10 DO
+		SET cadena = CONCAT(num,"^",contador," = ",POW(num,contador));
+        INSERT INTO tablapotencias VALUES (cadena);
+        SET contador = contador+1;
+    END WHILE;
+    SELECT * FROM tablapotencias;
+END //
+DELIMITER ;
+
+CALL tablasPotencias(3);
+
+-- Ejercicio 14
+DROP FUNCTION IF EXISTS areaCirculo;
+DELIMITER //
+CREATE FUNCTION areaCirculo(radio double) RETURNS FLOAT DETERMINISTIC
+BEGIN
+	DECLARE resultado FLOAT;
+    SET resultado = PI()*POW(radio,2);
+    RETURN resultado;
+END //
+DELIMITER ;
+
+SELECT areaCirculo(2);
+
+-- Ejercicio 15
+DROP FUNCTION IF EXISTS contarProductos;
+DELIMITER //
+CREATE FUNCTION contarProductos() RETURNS INT DETERMINISTIC
+BEGIN
+    DECLARE numProductos INT;
+    SET numProductos = (SELECT COUNT(*) FROM productos WHERE coste_producto > 5);
+    RETURN numProductos;
+END //
+DELIMITER ;
+SELECT contarProductos();
+
+-- Ejercicio 16
+CREATE TABLE ofertas_p_nuevo(
+	id TINYINT,
+    nombre VARCHAR(20),
+    precio FLOAT,
+    calidad tinyint,
+    coste_producto float
+);
+
+DROP TRIGGER IF EXISTS ofertas;
+DELIMITER //
+CREATE TRIGGER ofertas BEFORE INSERT ON productos FOR EACH ROW
+	BEGIN
+		INSERT INTO ofertas_p_nuevo VALUES (new.id,new.nombre,new.precio,new.calidad,new.coste_producto-(new.coste_producto*0.08));
+	END //
+DELIMITER ;
+INSERT INTO productos VALUES (6,"Galletas5",2.5,3,100);
+
+-- Ejercicio 17
+CREATE TABLE antiguo_producto(
+	nombre VARCHAR(20),
+    precio FLOAT
+);
+
+DROP TRIGGER IF EXISTS onDeleteProductos;
+DELIMITER //
+CREATE TRIGGER onDeleteProductos BEFORE DELETE ON productos FOR EACH ROW
+	BEGIN
+		INSERT INTO antiguo_producto VALUES (old.nombre,old.coste_producto);
+	END //
+DELIMITER ;
+
+DELETE FROM productos WHERE id = 1;
+
+-- Ejercicio 18
+CREATE TABLE proveedor_novel(
+	nombre VARCHAR(20),
+    confianza VARCHAR(20) DEFAULT "BAJA"
+);
+
+DROP TRIGGER IF EXISTS onUpdateProveedores;
+DELIMITER //
+CREATE TRIGGER onUpdateProveedores BEFORE UPDATE ON productos FOR EACH ROW
+	BEGIN
+		INSERT INTO proveedor_novel(nombre) VALUES (old.nombre);
+	END //
+DELIMITER ;
+
+UPDATE productos SET nombre = "SampleText" WHERE id = 2;
+
+/*
+DATE - format YYYY-MM-DD
+DATETIME - format: YYYY-MM-DD HH:MI:SS
+TIMESTAMP - format: YYYY-MM-DD HH:MI:SS
+YEAR - format YYYY or YY
+CURRENT_TIMESTAMP()
+*/

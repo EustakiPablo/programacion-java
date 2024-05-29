@@ -1,0 +1,18 @@
+{
+    "arrayJugadores":[{
+        "Equipo1":"Jugador1"
+    },
+    {
+        "Equipo1":"Jugador2"
+    },
+    {
+        "Equipo1":"Jugador3"
+    },
+    {
+        "Equipo2":"Jugador4"
+    },
+    {
+        "Equipo2":"Jugador5"
+    }
+    ]
+}
