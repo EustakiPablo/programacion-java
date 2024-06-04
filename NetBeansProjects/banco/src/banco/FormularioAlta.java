@@ -4,6 +4,13 @@
  */
 package banco;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author FP
@@ -48,11 +55,13 @@ public class FormularioAlta extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jTextFieldIdCuenta = new javax.swing.JTextField();
         jTextFieldNcuenta = new javax.swing.JTextField();
-        jTextField12 = new javax.swing.JTextField();
-        jTextField13 = new javax.swing.JTextField();
+        jTextFieldSaldo = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
+        jTextFieldMovimientos = new javax.swing.JTextField();
+        jCheckBox1 = new javax.swing.JCheckBox();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -73,6 +82,11 @@ public class FormularioAlta extends javax.swing.JFrame {
         jLabel8.setText("Teléfono");
 
         jButton1.setText("Dar de alta");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel10.setText("Movimientos");
 
@@ -80,39 +94,54 @@ public class FormularioAlta extends javax.swing.JFrame {
 
         jLabel14.setText("Nº de cuenta");
 
+        jTextFieldIdCuenta.setEnabled(false);
+
+        jTextFieldNcuenta.setEnabled(false);
+
+        jTextFieldSaldo.setEnabled(false);
+
         jLabel15.setText("Débito?");
 
         jLabel16.setText("Saldo");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "No", "Si" }));
+        jComboBox1.setEnabled(false);
+
+        jTextFieldMovimientos.setEnabled(false);
+
+        jCheckBox1.setText("Dar de alta cuenta?");
+        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Cerrar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextFieldIdUsuario)
-                            .addComponent(jTextFieldNombre)
-                            .addComponent(jTextFieldApellido)
-                            .addComponent(jTextFieldApellido2)
-                            .addComponent(jTextFieldDNI)
-                            .addComponent(jTextFieldCorreo)
-                            .addComponent(jTextFieldDireccion)
-                            .addComponent(jTextFieldTel, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jCheckBox1)
                         .addGap(47, 47, 47)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -124,13 +153,27 @@ public class FormularioAlta extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jTextFieldIdCuenta, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
                             .addComponent(jTextFieldNcuenta)
-                            .addComponent(jTextField12)
-                            .addComponent(jTextField13)
-                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jTextFieldSaldo)
+                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextFieldMovimientos)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(218, 218, 218)
-                        .addComponent(jButton1)))
-                .addContainerGap(20, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextFieldIdUsuario)
+                            .addComponent(jTextFieldNombre)
+                            .addComponent(jTextFieldApellido)
+                            .addComponent(jTextFieldApellido2)
+                            .addComponent(jTextFieldDNI)
+                            .addComponent(jTextFieldCorreo)
+                            .addComponent(jTextFieldDireccion)
+                            .addComponent(jTextFieldTel, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(26, 26, 26)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(213, 213, 213)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addGap(75, 75, 75))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -184,18 +227,47 @@ public class FormularioAlta extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTextFieldSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(45, 45, 45))
+                            .addComponent(jTextFieldMovimientos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(18, 18, 18)
+                .addComponent(jCheckBox1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addGap(21, 21, 21))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+        if (jCheckBox1.isSelected()) {
+            jTextFieldIdCuenta.setEnabled(true);
+            jTextFieldNcuenta.setEnabled(true);
+            jComboBox1.setEnabled(true);
+            jTextFieldSaldo.setEnabled(true);
+            jTextFieldMovimientos.setEnabled(true);
+        }else{
+            jTextFieldIdCuenta.setEnabled(false);
+            jTextFieldNcuenta.setEnabled(false);
+            jComboBox1.setEnabled(false);
+            jTextFieldSaldo.setEnabled(false);
+            jTextFieldMovimientos.setEnabled(false);
+        }
+        
+    }//GEN-LAST:event_jCheckBox1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        darAlta();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -231,9 +303,52 @@ public class FormularioAlta extends javax.swing.JFrame {
             }
         });
     }
-
+    private void darAlta(){
+        try(Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/banco", "root", "fp.2023")){
+            PreparedStatement pstmt = c.prepareStatement("INSERT INTO cliente VALUES(?,?,?,?,?,?,?,?);");
+            PreparedStatement pstmt2 = c.prepareStatement("INSERT INTO cuenta VALUES(?,?,?,?,?,?);");
+            if (jCheckBox1.isSelected()) {
+                pstmt.setInt(1, Integer.parseInt(jTextFieldIdUsuario.getText()));
+                pstmt.setString(2,jTextFieldNombre.getText());
+                pstmt.setString(3, jTextFieldApellido.getText());
+                pstmt.setString(4, jTextFieldApellido2.getText());
+                pstmt.setString(5, jTextFieldDNI.getText());
+                pstmt.setString(6, jTextFieldCorreo.getText());
+                pstmt.setString(7,jTextFieldDireccion.getText());
+                pstmt.setString(8, jTextFieldTel.getText());
+                
+                pstmt2.setInt(1,Integer.parseInt(jTextFieldIdCuenta.getText()));
+                pstmt2.setString(2, jTextFieldNcuenta.getText());
+                if (jComboBox1.getSelectedItem()=="Si") {
+                    pstmt2.setBoolean(3, true);
+                }else{
+                    pstmt2.setBoolean(3, false);
+                }
+                pstmt2.setDouble(4,Double.parseDouble(jTextFieldSaldo.getText()));
+                pstmt2.setString(5, jTextFieldMovimientos.getText());
+                pstmt2.setInt(6, Integer.parseInt(jTextFieldIdUsuario.getText()));
+                
+                pstmt.executeUpdate();
+                pstmt2.executeUpdate();
+            }else{
+                pstmt.setInt(1, Integer.parseInt(jTextFieldIdUsuario.getText()));
+                pstmt.setString(2,jTextFieldNombre.getText());
+                pstmt.setString(3, jTextFieldApellido.getText());
+                pstmt.setString(4, jTextFieldApellido2.getText());
+                pstmt.setString(5, jTextFieldDNI.getText());
+                pstmt.setString(6, jTextFieldCorreo.getText());
+                pstmt.setString(7,jTextFieldDireccion.getText());
+                pstmt.setString(8, jTextFieldTel.getText());
+                pstmt.executeUpdate();
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(FormularioAlta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -248,8 +363,6 @@ public class FormularioAlta extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField13;
     private javax.swing.JTextField jTextFieldApellido;
     private javax.swing.JTextField jTextFieldApellido2;
     private javax.swing.JTextField jTextFieldCorreo;
@@ -257,8 +370,10 @@ public class FormularioAlta extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldDireccion;
     private javax.swing.JTextField jTextFieldIdCuenta;
     private javax.swing.JTextField jTextFieldIdUsuario;
+    private javax.swing.JTextField jTextFieldMovimientos;
     private javax.swing.JTextField jTextFieldNcuenta;
     private javax.swing.JTextField jTextFieldNombre;
+    private javax.swing.JTextField jTextFieldSaldo;
     private javax.swing.JTextField jTextFieldTel;
     // End of variables declaration//GEN-END:variables
 }

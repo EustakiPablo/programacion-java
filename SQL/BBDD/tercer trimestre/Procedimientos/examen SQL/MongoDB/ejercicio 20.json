@@ -1,0 +1,18 @@
+{
+    "arrayGeneros":[{
+        "genero1":"artista1"
+    },
+    {
+        "genero2":"artista2"
+    },
+    {
+        "genero3":"artista3"
+    },
+    {
+        "genero4":"artista4"
+    },
+    {
+        "genero5":"artista5"
+    }
+    ]
+}
