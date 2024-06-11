@@ -3,10 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/FP/Desktop/Cristian/Programación/NetBeansProjects/banco/src/banco/Formulario.java</file>
             <file>file:/C:/Users/FP/Desktop/Cristian/Programación/NetBeansProjects/banco/src/banco/FormularioAltaCuenta.java</file>
             <file>file:/C:/Users/FP/Desktop/Cristian/Programación/NetBeansProjects/banco/src/banco/FormularioAlta.java</file>
             <file>file:/C:/Users/FP/Desktop/Cristian/Programación/NetBeansProjects/banco/src/banco/FormularioActualizarCliente.java</file>
+=======
+            <file>file:/D:/Grado%20Superior/GIT/programacion-java/NetBeansProjects/banco/src/banco/Formulario.java</file>
+>>>>>>> e52dfe5aed80fc2f1312017c279574c2b494b7f0
         </group>
     </open-files>
 </project-private>
